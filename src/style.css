@@ -422,3 +422,34 @@ h1, h2, h3, h4, .font-display {
 .animate-wave-float {
   animation: waveBreathing 14s ease-in-out infinite alternate;
 }
+
+/* ================= DEFINITIVE MOBILE & RESPONSIVE RULES ================= */
+.nav-subtitle {
+  display: none !important;
+}
+@media (min-width: 1280px) {
+  .nav-subtitle {
+    display: flex !important;
+  }
+}
+
+#mobileMenuBtn {
+  display: flex !important;
+  flex-shrink: 0 !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+}
+@media (min-width: 1280px) {
+  #mobileMenuBtn {
+    display: none !important;
+  }
+}
+
+/* Ensure modal always overlays everything on mobile */
+#bookingModal {
+  z-index: 999999 !important;
+}
+#mobileMenu {
+  z-index: 999998 !important;
+}

@@ -13,17 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
     });
     if (mobileMenuClose) {
       mobileMenuClose.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
       });
     }
-    // Close mobile menu on clicking any navigation link
-    mobileMenu.querySelectorAll('a').forEach(link => {
+    // Close mobile menu when clicking outside drawer panel
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    });
+    // Close mobile menu on clicking any navigation link or action button
+    mobileMenu.querySelectorAll('a, button').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
       });
     });
   }
@@ -86,9 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openModal(defaultType = 'clinic', defaultCondition = '') {
     if (!bookingModal) return;
-    document.body.classList.add('overflow-hidden');
+
+    // Hide floating navbar & mobile sticky bar so modal has 100% clean takeover without obscuring header/footer
+    const floatingNav = document.getElementById('floatingNavbar');
+    if (floatingNav) floatingNav.style.display = 'none';
     const stickyBar = document.getElementById('mobileStickyBar');
     if (stickyBar) stickyBar.style.display = 'none';
+
+    document.body.classList.add('overflow-hidden');
 
     bookingModal.classList.remove('opacity-0', 'pointer-events-none');
     bookingModal.classList.add('opacity-100', 'pointer-events-auto');
@@ -96,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       modalContent.classList.remove('scale-95');
       modalContent.classList.add('scale-100');
     }
-    document.body.classList.add('overflow-hidden');
 
     // Set care type
     careTypeRadios.forEach(radio => {
@@ -106,26 +120,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     updateModalCareMode(defaultType === 'home');
 
-    // Set condition if passed
-    const conditionSelect = document.getElementById('modalCondition');
-    if (conditionSelect && defaultCondition) {
-      conditionSelect.value = defaultCondition;
+    // Set condition if provided
+    const modalCondition = document.getElementById('modalCondition');
+    if (modalCondition && defaultCondition) {
+      modalCondition.value = defaultCondition;
     }
   }
 
   function closeModal() {
     if (!bookingModal) return;
-    document.body.classList.remove('overflow-hidden');
-    const stickyBar = document.getElementById('mobileStickyBar');
-    if (stickyBar) stickyBar.style.display = '';
-
-    bookingModal.classList.add('opacity-0', 'pointer-events-none');
     bookingModal.classList.remove('opacity-100', 'pointer-events-auto');
+    bookingModal.classList.add('opacity-0', 'pointer-events-none');
     if (modalContent) {
-      modalContent.classList.add('scale-95');
       modalContent.classList.remove('scale-100');
+      modalContent.classList.add('scale-95');
     }
     document.body.classList.remove('overflow-hidden');
+
+    // Restore floating navbar and mobile sticky bar
+    const floatingNav = document.getElementById('floatingNavbar');
+    if (floatingNav) floatingNav.style.display = '';
+    const stickyBar = document.getElementById('mobileStickyBar');
+    if (stickyBar) stickyBar.style.display = '';
   }
 
   openModalButtons.forEach(btn => {
