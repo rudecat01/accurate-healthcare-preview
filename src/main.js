@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openModal(defaultType = 'clinic', defaultCondition = '') {
     if (!bookingModal) return;
+    document.body.classList.add('overflow-hidden');
     bookingModal.classList.remove('opacity-0', 'pointer-events-none');
     bookingModal.classList.add('opacity-100', 'pointer-events-auto');
     if (modalContent) {
@@ -111,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeModal() {
     if (!bookingModal) return;
+    document.body.classList.remove('overflow-hidden');
     bookingModal.classList.add('opacity-0', 'pointer-events-none');
     bookingModal.classList.remove('opacity-100', 'pointer-events-auto');
     if (modalContent) {
