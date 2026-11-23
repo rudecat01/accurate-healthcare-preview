@@ -84,31 +84,31 @@
     "medicalSpecialty": ["Physiotherapy", "Neurology", "Orthopedics"]
   }
   </script>
-  <script type="module" crossorigin src="./assets/main-CqMwHsUT.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/style-CfZkiX9b.css">
+  <script type="module" crossorigin src="./assets/main-1EqddOwV.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/style-DZ9uHt_E.css">
 </head>
 <body class="bg-[#f8f8fa] text-slate-800 antialiased selection:bg-navy-900 selection:text-white pb-20 md:pb-0 relative overflow-x-hidden">
 
   <!-- ================= FLOATING ISLAND NAVBAR (PHYSIOFIT SIGNATURE) ================= -->
-  <div class="fixed top-3 sm:top-5 left-0 right-0 z-50 px-3 sm:px-6 pointer-events-none">
-    <header class="max-w-[1440px] 2xl:max-w-[1536px] w-full mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200/90 px-3.5 sm:px-6 md:px-8 py-2.5 sm:py-4 flex items-center justify-between pointer-events-auto transition-all">
+  <div id="floatingNavbar" class="fixed top-2.5 sm:top-5 left-0 right-0 z-50 px-2.5 sm:px-6 pointer-events-none transition-all duration-300">
+    <header class="max-w-[1440px] 2xl:max-w-[1536px] w-full mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200/90 px-3 sm:px-6 md:px-8 py-2 sm:py-3.5 flex items-center justify-between pointer-events-auto transition-all">
 
-      <!-- Brand Logo & Name -->
+      <!-- Brand Logo & Name (Guaranteed Mobile Responsive) -->
       <a href="#" class="flex items-center gap-2 sm:gap-3 group shrink min-w-0" aria-label="Accurate Healthcare Home">
-        <img src="./images/logo-ah-full.png" alt="Accurate Healthcare" class="h-8 sm:h-11 md:h-12 w-auto max-w-[80px] sm:max-w-[140px] rounded-xl object-contain shadow-sm border border-slate-200/80 group-hover:scale-105 transition shrink-0" />
+        <img src="./images/logo-ah-full.png" alt="Accurate Healthcare" class="h-8 sm:h-11 md:h-12 w-auto max-w-[70px] sm:max-w-[130px] rounded-xl object-contain shadow-sm border border-slate-200/80 group-hover:scale-105 transition shrink-0" />
         <div class="border-l-2 border-slate-200 pl-2 sm:pl-3 flex flex-col justify-center min-w-0">
           <span class="text-xs sm:text-base lg:text-[19px] font-black uppercase tracking-tight sm:tracking-[0.14em] text-navy-900 leading-tight whitespace-nowrap">
             ACCURATE <span class="text-[#367fb5]">HEALTHCARE</span>
           </span>
-          <!-- Subtitle: ONLY visible on desktop/laptop where there is plenty of space -->
-          <div class="hidden xl:flex items-center gap-2 mt-1">
-            <span class="h-[1.5px] w-6 bg-[#367fb5]/40"></span>
+          <!-- Subtitle: ONLY visible on desktop (display: none by default via .nav-subtitle, flex on >=1280px) -->
+          <div class="nav-subtitle items-center gap-2 mt-1">
+            <span class="h-[1.5px] w-5 bg-[#367fb5]/40"></span>
             <span class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 whitespace-nowrap flex items-center gap-1.5">
               <span>PHYSIOTHERAPY</span>
               <span class="text-[#367fb5] font-black text-xs leading-none">+</span>
               <span>NEURO REHAB</span>
             </span>
-            <span class="h-[1.5px] w-6 bg-[#367fb5]/40"></span>
+            <span class="h-[1.5px] w-5 bg-[#367fb5]/40"></span>
           </div>
         </div>
       </a>
@@ -134,24 +134,31 @@
         </button>
       </div>
 
-      <!-- Mobile Hamburger Menu Button: Guaranteed Visibility on all Phones -->
-      <button id="mobileMenuBtn" class="xl:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-navy-900 border border-slate-300 shadow-sm shrink-0 flex items-center justify-center transition active:scale-90 ml-auto z-10" aria-label="Toggle Menu">
-        <i data-lucide="menu" class="w-6 h-6 text-navy-900 stroke-[2.5]"></i>
+      <!-- Mobile Hamburger Menu Button: Inlined SVG with Guaranteed Visibility -->
+      <button id="mobileMenuBtn" class="xl:hidden w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-navy-900 border border-slate-300 shadow-sm shrink-0 flex items-center justify-center transition ml-auto z-10 cursor-pointer" aria-label="Toggle Navigation Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e1d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
       </button>
 
     </header>
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobileMenu" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm xl:hidden">
+  <div id="mobileMenu" class="hidden fixed inset-0 z-[999998] bg-slate-950/70 backdrop-blur-sm xl:hidden">
     <div class="fixed top-0 right-0 w-80 max-w-[85%] h-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
       <div>
         <div class="flex items-center justify-between pb-5 border-b border-slate-100">
           <a href="#" class="flex items-center">
             <img src="./images/logo-ah-full.png" alt="Accurate Healthcare" class="h-10 w-auto rounded-lg shadow-sm border border-slate-100">
           </a>
-          <button id="mobileMenuClose" class="p-2 text-slate-400 hover:text-slate-800">
-            <i data-lucide="x" class="w-6 h-6"></i>
+          <button id="mobileMenuClose" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-navy-900 flex items-center justify-center border border-slate-300 active:scale-90 cursor-pointer" aria-label="Close Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0e1d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
           </button>
         </div>
 
@@ -167,10 +174,12 @@
 
       <div class="pt-6 border-t border-slate-100 space-y-3">
         <a href="tel:+919999871475" class="btn-offset-white w-full py-3 text-xs justify-center whitespace-nowrap">
-          <i data-lucide="phone" class="w-4 h-4 text-gold-600"></i> Call: 99998 71475
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#367fb5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Call: 99998 71475
         </a>
         <button data-type="clinic" class="open-booking-modal btn-offset-gold w-full py-3 text-xs justify-center">
-          <i data-lucide="calendar" class="w-4 h-4"></i> Book Appointment
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-1.5"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+          Book Appointment
         </button>
       </div>
     </div>
@@ -1029,7 +1038,7 @@
   </section>
 
   <!-- ================= SECTION 9: ONLINE APPOINTMENT REQUEST (Frame_009) ================= -->
-  <section class="py-20 bg-white border-t border-slate-200/80 relative overflow-hidden">
+  <section id="contact" class="py-16 sm:py-20 bg-white border-t border-slate-200/80 relative overflow-hidden scroll-mt-20">
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
@@ -1067,7 +1076,7 @@
         </div>
 
         <div class="lg:col-span-6">
-          <div class="bg-[#f8f8fa] text-slate-900 rounded-3xl p-8 sm:p-10 shadow-[6px_6px_0px_#0e1d3e] border-2 border-navy-900">
+          <div class="bg-[#f8f8fa] text-slate-900 rounded-3xl p-4 sm:p-8 md:p-10 shadow-[6px_6px_0px_#0e1d3e] border-2 border-navy-900">
             <h3 class="text-2xl font-black italic uppercase text-slate-900">Book Your Consultation</h3>
             <p class="text-xs sm:text-sm text-slate-500 mt-1 mb-6">Choose your care mode and submit your booking to WhatsApp.</p>
 
@@ -1299,37 +1308,40 @@
   </footer>
 
   <!-- ================= MOBILE STICKY BAR (TESTED FOR ALL SMARTPHONES) ================= -->
-  <div id="mobileStickyBar" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-navy-900 py-2.5 px-3 md:hidden shadow-2xl flex items-center gap-2">
-    <a href="tel:+919999871475" class="flex-1 py-3 px-2 rounded-xl bg-slate-100 text-slate-900 font-black italic uppercase text-xs flex items-center justify-center gap-1.5 border border-slate-300 whitespace-nowrap active:scale-95 transition-transform">
-      <i data-lucide="phone-call" class="w-3.5 h-3.5 text-[#367fb5] shrink-0"></i>
+  <div id="mobileStickyBar" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-2 flex items-center justify-between gap-2 sm:hidden shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+    <a href="tel:+919999871475" class="flex-1 py-2.5 px-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-navy-900 font-black italic uppercase text-xs flex items-center justify-center gap-1.5 border border-slate-300 shadow-sm whitespace-nowrap active:scale-95 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0e1d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       <span>Call</span>
     </a>
-    <a href="https://wa.me/919999871475?text=Hello%20Accurate%20Healthcare,%20I%20would%20like%20to%20book%20a%20physiotherapy%20consultation" target="_blank" class="flex-1 py-3 px-2 rounded-xl bg-emerald-600 text-white font-black italic uppercase text-xs flex items-center justify-center gap-1.5 shadow-[2px_2px_0px_#0e1d3e] whitespace-nowrap active:scale-95 transition-transform">
-      <i data-lucide="message-circle" class="w-3.5 h-3.5 shrink-0"></i>
+    <a href="https://wa.me/919999871475?text=Hello%20Accurate%20Healthcare,%20I%20would%20like%20to%20book%20a%20physiotherapy%20consultation" target="_blank" class="flex-1 py-2.5 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black italic uppercase text-xs flex items-center justify-center gap-1.5 shadow-[2px_2px_0px_#0e1d3e] whitespace-nowrap active:scale-95 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 shrink-0"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
       <span>WhatsApp</span>
     </a>
-    <button data-type="clinic" class="open-booking-modal flex-1 py-3 px-2 rounded-xl bg-[#367fb5] text-white font-black italic uppercase text-xs flex items-center justify-center gap-1.5 border-2 border-navy-900 shadow-[2px_2px_0px_#0e1d3e] whitespace-nowrap active:scale-95 transition-transform">
-      <i data-lucide="calendar" class="w-3.5 h-3.5 shrink-0"></i>
+    <button data-type="clinic" class="open-booking-modal flex-1 py-2.5 px-2 rounded-xl bg-[#367fb5] hover:bg-[#286491] text-white font-black italic uppercase text-xs flex items-center justify-center gap-1.5 border-2 border-navy-900 shadow-[2px_2px_0px_#0e1d3e] whitespace-nowrap active:scale-95 transition-transform cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 shrink-0"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
       <span>Book Slot</span>
     </button>
   </div>
-
+  
   <!-- ================= BOOKING MODAL (FULL-SCREEN MOBILE & DESKTOP POPUP) ================= -->
-  <div id="bookingModal" class="fixed inset-0 z-[999999] bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-2.5 sm:p-4">
+  <div id="bookingModal" class="fixed inset-0 z-[999999] bg-slate-950/85 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-3 sm:p-4">
     <div id="modalContent" class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-4 sm:p-7 shadow-2xl border-2 border-navy-900 transform scale-95 transition-transform duration-300 relative max-h-[92vh] sm:max-h-[88vh] flex flex-col my-auto overflow-hidden">
 
       <!-- Pinned Modal Header -->
       <div class="flex items-start justify-between pb-3 border-b border-slate-100 shrink-0 pr-10">
         <div>
           <span class="section-badge-gold text-[9px] sm:text-[10px]">QUICK APPOINTMENT</span>
-          <h3 class="text-xl sm:text-2xl font-black italic uppercase text-slate-900 mt-1 leading-tight">Book Consultation</h3>
+          <h3 class="text-lg sm:text-2xl font-black italic uppercase text-slate-900 mt-1 leading-tight">Book Consultation</h3>
           <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Your slot will be confirmed via WhatsApp.</p>
         </div>
       </div>
 
-      <!-- Pinned Close Button ('X') -->
-      <button id="closeModalBtn" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition border border-slate-200 z-50 active:scale-90" aria-label="Close Modal">
-        <i data-lucide="x" class="w-5 h-5 text-slate-800"></i>
+      <!-- Pinned Close Button ('X') with Inlined SVG -->
+      <button id="closeModalBtn" class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-navy-900 flex items-center justify-center transition border border-slate-300 z-50 active:scale-90 cursor-pointer shadow-sm" aria-label="Close Modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0e1d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
       </button>
 
       <!-- Scrollable Form Body -->
@@ -1349,55 +1361,43 @@
           </div>
         </div>
 
-        <!-- Home Physio Location Input -->
-        <div id="modalLocationGroup" class="hidden transition-all duration-300">
-          <label class="block text-xs font-black italic uppercase text-slate-700 mb-1">
-            Patient Address / Area in NCR <span class="text-[#367fb5]">*</span>
-          </label>
-          <div class="relative">
-            <input type="text" id="modalLocation" placeholder="e.g. Landcraft Golflinks, Crossings Republik, NH-24" class="w-full pl-9 pr-4 py-2 rounded-xl border-2 border-slate-300 text-sm focus:outline-none focus:border-navy-900 font-medium">
-            <i data-lucide="map-pin" class="w-4 h-4 text-[#367fb5] absolute left-3 top-2.5 pointer-events-none"></i>
-          </div>
-          <span class="text-[10px] text-slate-500 mt-0.5 block">Required to dispatch nearest senior physiotherapist</span>
+        <!-- Home Physio Location Field -->
+        <div id="modalLocationGroup" class="hidden transition-all">
+          <label class="block text-xs font-black italic uppercase text-slate-700 mb-1">Home Address / Area in NCR *</label>
+          <input type="text" id="modalLocation" placeholder="e.g. Tower 2C, Flat 504, Landcraft Golflinks" class="w-full px-3 py-2 rounded-xl border-2 border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-navy-900">
         </div>
 
         <div>
           <label class="block text-xs font-black italic uppercase text-slate-700 mb-1">Patient Full Name *</label>
-          <input type="text" id="modalName" required placeholder="e.g. Ramesh Kumar" class="w-full px-3.5 py-2 rounded-xl border-2 border-slate-300 text-sm focus:outline-none focus:border-navy-900 font-medium">
+          <input type="text" id="modalName" required placeholder="e.g. Ramesh Kumar" class="w-full px-3 py-2 rounded-xl border-2 border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-navy-900">
         </div>
 
         <div>
           <label class="block text-xs font-black italic uppercase text-slate-700 mb-1">WhatsApp / Phone Number *</label>
-          <input type="tel" id="modalPhone" required placeholder="e.g. 98765 43210" class="w-full px-3.5 py-2 rounded-xl border-2 border-slate-300 text-sm focus:outline-none focus:border-navy-900 font-medium">
+          <input type="tel" id="modalPhone" required placeholder="e.g. 98765 43210" class="w-full px-3 py-2 rounded-xl border-2 border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-navy-900">
         </div>
 
         <div>
           <label class="block text-xs font-black italic uppercase text-slate-700 mb-1">Chief Problem / Condition *</label>
-          <select id="modalCondition" class="w-full px-3.5 py-2 rounded-xl border-2 border-slate-300 text-sm focus:outline-none focus:border-navy-900 bg-white font-medium">
+          <select id="modalCondition" required class="w-full px-3 py-2 rounded-xl border-2 border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-navy-900 bg-white">
             <option value="Stroke / Paralysis Rehabilitation">Stroke / Paralysis Rehabilitation</option>
-            <option value="Severe Back Pain / Sciatica">Severe Back Pain / Sciatica / Slip Disc</option>
-            <option value="Neck & Cervical Spondylosis">Neck & Cervical Spondylosis</option>
-            <option value="Post Knee Replacement Rehab">Post Knee / Hip Replacement Rehab</option>
-            <option value="Parkinson's / Neuro Care">Parkinson's / Neuro Mobility</option>
-            <option value="Elderly Bedridden Care">Elderly Bedridden Care & Attendant</option>
-            <option value="General Physical Assessment">General Physical Assessment</option>
+            <option value="Spine, Slip Disc & Sciatica">Spine, Slip Disc & Sciatica</option>
+            <option value="Severe Knee & Joint Osteoarthritis">Severe Knee & Joint Osteoarthritis</option>
+            <option value="Shoulder / Frozen Shoulder Relief">Shoulder / Frozen Shoulder Relief</option>
+            <option value="Post-Surgical Knee / Hip Recovery">Post-Surgical Knee / Hip Recovery</option>
+            <option value="Senior Citizen Home Physiotherapy">Senior Citizen Home Physiotherapy</option>
+            <option value="Other / General Consultation">Other / General Consultation</option>
           </select>
         </div>
 
-        <div>
-          <label class="block text-xs font-black italic uppercase text-slate-700 mb-1">Preferred Date / Timing</label>
-          <input type="text" id="modalDate" placeholder="e.g. Tomorrow 11:00 AM" class="w-full px-3.5 py-2 rounded-xl border-2 border-slate-300 text-sm focus:outline-none focus:border-navy-900 font-medium">
-        </div>
-
-        <!-- Submit Button: Fully Contained with Space Below -->
-        <div class="pt-2 pb-1">
-          <button type="submit" class="btn-offset-gold w-full py-3.5 text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
-            <span>CONFIRM &amp; SEND VIA WHATSAPP</span>
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3 sm:py-3.5 px-4 rounded-xl bg-gold-600 hover:bg-gold-500 text-white font-black italic uppercase text-xs sm:text-sm shadow-[3px_3px_0px_#0e1d3e] border-2 border-navy-900 active:scale-95 transition-transform flex items-center justify-center gap-2 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>Confirm & Send via WhatsApp</span>
           </button>
         </div>
-
       </form>
+
     </div>
   </div>
 
