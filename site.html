@@ -90,24 +90,24 @@
 
   <!-- ================= FLOATING ISLAND NAVBAR (PHYSIOFIT SIGNATURE) ================= -->
   <div id="floatingNavbar" class="fixed top-2.5 sm:top-5 left-0 right-0 z-50 px-2.5 sm:px-6 pointer-events-none transition-all duration-300">
-    <header class="max-w-[1440px] 2xl:max-w-[1536px] w-full mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200/90 px-3 sm:px-6 md:px-8 py-2 sm:py-3.5 flex items-center justify-between pointer-events-auto transition-all">
+    <header class="max-w-[1440px] 2xl:max-w-[1536px] w-full mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200/90 px-3.5 sm:px-6 md:px-8 py-2.5 sm:py-3.5 flex items-center justify-between pointer-events-auto transition-all">
 
-      <!-- Brand Logo & Name (Guaranteed Mobile Responsive) -->
-      <a href="#" class="flex items-center gap-2 sm:gap-3 group shrink min-w-0" aria-label="Accurate Healthcare Home">
-        <img src="./images/logo-ah-full.png" alt="Accurate Healthcare" class="h-8 sm:h-11 md:h-12 w-auto max-w-[70px] sm:max-w-[130px] rounded-xl object-contain shadow-sm border border-slate-200/80 group-hover:scale-105 transition shrink-0" />
-        <div class="border-l-2 border-slate-200 pl-2 sm:pl-3 flex flex-col justify-center min-w-0">
-          <span class="text-xs sm:text-base lg:text-[19px] font-black uppercase tracking-tight sm:tracking-[0.14em] text-navy-900 leading-tight whitespace-nowrap">
+      <!-- Brand Logo & Name (Bold Prominent Title with Subtitle Footnote) -->
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3.5 group shrink min-w-0 my-auto" aria-label="Accurate Healthcare Home">
+        <img src="./images/logo-ah-full.png" alt="Accurate Healthcare" class="h-9 sm:h-11 md:h-12 w-auto max-w-[70px] sm:max-w-[130px] rounded-xl object-contain shadow-sm border border-slate-200/80 group-hover:scale-105 transition shrink-0" />
+        <div class="border-l-2 border-slate-200 pl-2.5 sm:pl-3.5 flex flex-col justify-center min-w-0">
+          <span class="text-[15px] sm:text-[18px] md:text-xl lg:text-[22px] font-black uppercase tracking-tight sm:tracking-[0.10em] text-navy-900 leading-none whitespace-nowrap">
             ACCURATE <span class="text-[#367fb5]">HEALTHCARE</span>
           </span>
-          <!-- Subtitle: ONLY visible on desktop (display: none by default via .nav-subtitle, flex on >=1280px) -->
-          <div class="nav-subtitle items-center gap-2 mt-1">
-            <span class="h-[1.5px] w-5 bg-[#367fb5]/40"></span>
-            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 whitespace-nowrap flex items-center gap-1.5">
+          <!-- Subtitle Footnote: Fills the space nicely to the menu button -->
+          <div class="nav-subtitle flex items-center gap-1.5 sm:gap-2 mt-1 sm:mt-1.5 min-w-0">
+            <span class="h-[1.5px] w-3.5 sm:w-5 md:w-6 bg-[#367fb5]/50 shrink-0"></span>
+            <span class="text-[9px] sm:text-[10px] md:text-[11px] font-black uppercase tracking-[0.14em] sm:tracking-[0.2em] text-slate-500 whitespace-nowrap flex items-center gap-1 shrink-0">
               <span>PHYSIOTHERAPY</span>
               <span class="text-[#367fb5] font-black text-xs leading-none">+</span>
               <span>NEURO REHAB</span>
             </span>
-            <span class="h-[1.5px] w-5 bg-[#367fb5]/40"></span>
+            <span class="h-[1.5px] w-3.5 sm:w-5 md:w-6 bg-[#367fb5]/50 shrink-0"></span>
           </div>
         </div>
       </a>
@@ -133,9 +133,9 @@
         </button>
       </div>
 
-      <!-- Mobile Hamburger Menu Button: Inlined SVG with Guaranteed Visibility -->
-      <button id="mobileMenuBtn" class="xl:hidden w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-navy-900 border border-slate-300 shadow-sm shrink-0 flex items-center justify-center transition ml-auto z-10 cursor-pointer" aria-label="Toggle Navigation Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e1d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0">
+      <!-- Mobile Hamburger Menu Button: Perfectly Centered Inlined SVG -->
+      <button id="mobileMenuBtn" class="xl:hidden w-11 h-11 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-90 text-navy-900 border border-slate-300 shadow-sm shrink-0 flex items-center justify-center transition ml-auto my-auto z-10 cursor-pointer" aria-label="Toggle Navigation Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e1d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0 block m-auto pointer-events-none">
           <line x1="4" x2="20" y1="12" y2="12"></line>
           <line x1="4" x2="20" y1="6" y2="6"></line>
           <line x1="4" x2="20" y1="18" y2="18"></line>
