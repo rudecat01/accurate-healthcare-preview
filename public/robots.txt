@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://accuratehealthcare.co.in/sitemap.xml

@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+*.log
+dist
+temp_*
+test_*
+crop-*
+*.tmp
