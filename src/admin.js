@@ -113,12 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Quick Demo Login Button
+  // Quick Demo Login Button (Guaranteed 1-Click Access)
   if (quickDemoLoginBtn) {
-    quickDemoLoginBtn.addEventListener('click', async () => {
+    quickDemoLoginBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
       loginEmail.value = 'admin@accuratehealthcare.co.in';
       loginPassword.value = 'accurate2026';
-      loginSubmitBtn.click();
+      const res = await loginAdmin('admin@accuratehealthcare.co.in', 'accurate2026');
+      if (res.success) {
+        checkAuth();
+      }
     });
   }
 
