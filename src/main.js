@@ -1,4 +1,5 @@
 // Accurate Healthcare & Physiotherapy Centre - Interactive Handlers
+import { createAppointment } from './supabase.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lucide icons if available
@@ -186,74 +187,159 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- WhatsApp Booking Form Logic ---
+  // --- Booking Confirmation Popup Modal ---
+  function showBookingSuccessModal(booking) {
+    let modal = document.getElementById('bookingSuccessPopup');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'bookingSuccessPopup';
+      modal.className = 'fixed inset-0 z-[9999999] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300';
+      document.body.appendChild(modal);
+    }
+
+    const isHome = booking.care_mode === 'home';
+    const cleanPhone = '919999871475';
+    const waMessage = encodeURIComponent(
+      `Hello Dr. Manish Gupta, I have registered an appointment on the Accurate Healthcare portal.\n\n` +
+      `📋 *Booking Reference:* ${booking.booking_ref}\n` +
+      `👤 *Patient:* ${booking.patient_name}\n` +
+      `📞 *Phone:* ${booking.phone}\n` +
+      `🏥 *Care Mode:* ${isHome ? 'Home Physio Visit' : 'NH-24 Clinic Consultation'}\n` +
+      (isHome && booking.location ? `📍 *Location:* ${booking.location}\n` : '') +
+      `🩺 *Condition:* ${booking.condition}\n\n` +
+      `Kindly confirm my consultation slot.`
+    );
+
+    modal.innerHTML = `
+      <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 border-2 border-navy-900 shadow-2xl text-center transform scale-100 transition-all">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-emerald-100 border-2 border-emerald-600 flex items-center justify-center text-emerald-600 shadow-[3px_3px_0px_#0e1d3e]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-black italic uppercase tracking-wider mb-2">
+          Request Recorded in System
+        </span>
+
+        <h3 class="text-2xl font-black italic uppercase text-navy-900">Booking Confirmed!</h3>
+        <p class="text-xs text-slate-500 mt-1 mb-4">Your appointment has been logged in our clinic database.</p>
+
+        <!-- Booking Ref Badge -->
+        <div class="bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-4 mb-4 text-left space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Booking Reference</span>
+            <span class="font-mono text-sm font-black text-[#367fb5] bg-brand-50 border border-brand-200 px-2.5 py-0.5 rounded-lg">${booking.booking_ref}</span>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-bold">Patient Name:</span>
+            <span class="font-bold text-slate-800">${booking.patient_name}</span>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-bold">Care Mode:</span>
+            <span class="font-bold text-slate-800">${isHome ? 'Home Physio Care' : 'NH-24 Clinic Consultation'}</span>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-500 font-bold">Chief Problem:</span>
+            <span class="font-bold text-slate-800 truncate max-w-[200px]">${booking.condition}</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-slate-500 mb-5 leading-relaxed">
+          Dr. Manish Gupta & Dr. Vandana Choudhary's team will review your slot. You can also send this reference via WhatsApp for instant confirmation.
+        </p>
+
+        <div class="space-y-2.5">
+          <a href="https://wa.me/${cleanPhone}?text=${waMessage}" target="_blank" class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black italic uppercase text-xs sm:text-sm shadow-[3px_3px_0px_#0e1d3e] flex items-center justify-center gap-2 transition active:scale-95">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Notify on WhatsApp (+91 99998 71475)</span>
+          </a>
+
+          <button id="closeSuccessPopupBtn" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-black italic uppercase text-xs border border-slate-300 transition">
+            Done / Return to Site
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.classList.remove('hidden');
+    document.getElementById('closeSuccessPopupBtn')?.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+  }
+
+  // --- Real Booking Form Logic (Connected to Supabase) ---
   const bookingForm = document.getElementById('quickBookingForm');
   if (bookingForm) {
-    bookingForm.addEventListener('submit', (e) => {
+    bookingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const submitBtn = bookingForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Registering Appointment...';
+      }
+
       const name = document.getElementById('formName')?.value || 'Patient';
       const phone = document.getElementById('formPhone')?.value || '';
-      const careType = document.querySelector('input[name="careType"]:checked')?.value || 'Clinic Visit';
+      const careType = document.querySelector('input[name="careType"]:checked')?.value === 'Home Visit' ? 'home' : 'clinic';
       const location = document.getElementById('formLocation')?.value || '';
       const condition = document.getElementById('formCondition')?.value || 'General Consultation';
-      const notes = document.getElementById('formNotes')?.value || 'None';
+      const notes = document.getElementById('formNotes')?.value || '';
 
-      // Save locally
-      saveBookingLead({ name, phone, careType, location, condition, notes, source: 'Quick Form' });
+      const res = await createAppointment({
+        patient_name: name,
+        phone,
+        care_mode: careType,
+        location,
+        condition,
+        notes
+      });
 
-      const whatsappNumber = '919999871475';
-      const text = encodeURIComponent(
-        `*New Consultation Request - Accurate Healthcare*\n\n` +
-        `👤 *Name:* ${name}\n` +
-        `📞 *Phone:* ${phone}\n` +
-        `🏥 *Care Mode:* ${careType}\n` +
-        (location ? `📍 *Home Location:* ${location}\n` : '') +
-        `🩺 *Condition:* ${condition}\n` +
-        `📝 *Additional Details:* ${notes}\n\n` +
-        `Please confirm available appointment slots.`
-      );
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
 
-      showSuccessBanner('Consultation request saved! Opening WhatsApp to send directly to clinic...');
-      setTimeout(() => {
-        window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-      }, 800);
+      bookingForm.reset();
+      showBookingSuccessModal(res.data);
     });
   }
 
   // Modal Form Submission
   const modalForm = document.getElementById('modalBookingForm');
   if (modalForm) {
-    modalForm.addEventListener('submit', (e) => {
+    modalForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const submitBtn = modalForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Registering...';
+      }
+
       const name = document.getElementById('modalName')?.value || 'Patient';
       const phone = document.getElementById('modalPhone')?.value || '';
-      const careType = document.querySelector('input[name="modalCareType"]:checked')?.value === 'home' ? 'Home Visit Care' : 'Clinic Consultation';
+      const careType = document.querySelector('input[name="modalCareType"]:checked')?.value === 'home' ? 'home' : 'clinic';
       const location = document.getElementById('modalLocation')?.value || '';
       const condition = document.getElementById('modalCondition')?.value || 'General Consultation';
-      const date = document.getElementById('modalDate')?.value || 'Earliest available';
-      const message = document.getElementById('modalMessage')?.value || '';
+      const notes = document.getElementById('modalNotes')?.value || '';
 
-      // Save locally
-      saveBookingLead({ name, phone, careType, location, condition, date, message, source: 'Popup Modal' });
+      const res = await createAppointment({
+        patient_name: name,
+        phone,
+        care_mode: careType,
+        location,
+        condition,
+        notes
+      });
 
-      const whatsappNumber = '919999871475';
-      const text = encodeURIComponent(
-        `*Appointment Booking Request - Accurate Healthcare*\n\n` +
-        `👤 *Name:* ${name}\n` +
-        `📞 *Phone:* ${phone}\n` +
-        `🏥 *Type:* ${careType}\n` +
-        (location ? `📍 *Address / Location in NCR:* ${location}\n` : '') +
-        `🩺 *Condition / Problem:* ${condition}\n` +
-        `📅 *Preferred Date:* ${date}\n` +
-        (message ? `📝 *Notes:* ${message}\n` : '') +
-        `\nPlease let me know the doctor's availability.`
-      );
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
 
       closeModal();
-      showSuccessBanner('Appointment details recorded! Redirecting to WhatsApp to send directly to doctor...');
-      setTimeout(() => {
-        window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-      }, 800);
+      modalForm.reset();
+      showBookingSuccessModal(res.data);
     });
   }
 

@@ -3,13 +3,13 @@
 :root {
   --font-main: 'Plus Jakarta Sans', sans-serif;
   --font-display: 'Outfit', sans-serif;
-  
+
   --color-navy: #0e1d3e;
   --color-navy-dark: #070e1e;
-  --color-brand: #367fb5;
-  --color-brand-dark: #286491;
-  --color-brand-light: #5398cb;
-  --color-brand-bg: #ebf4fa;
+  --color-brand: #478ab9;
+  --color-brand-dark: #356f98;
+  --color-brand-light: #6ba6cd;
+  --color-brand-bg: #eef6fb;
   --color-bg-light: #f8f8fa;
 }
 
@@ -44,17 +44,22 @@ body {
   background-size: 1500px auto;
 }
 
-h1, h2, h3, h4, .font-display {
+h1,
+h2,
+h3,
+h4,
+.font-display {
   font-family: var(--font-display);
 }
 
 /* ================= BRAND BLUE SIGNATURE BUTTONS (HARD OFFSET SHADOW) ================= */
-.btn-offset-gold, .btn-offset-brand {
+.btn-offset-gold,
+.btn-offset-brand {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #367fb5;
+  background-color: #478ab9;
   color: #ffffff;
   border: 2px solid #0e1d3e;
   box-shadow: 4px 4px 0px #0e1d3e;
@@ -71,10 +76,11 @@ h1, h2, h3, h4, .font-display {
   transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
 }
 
-.btn-offset-gold:hover, .btn-offset-brand:hover {
+.btn-offset-gold:hover,
+.btn-offset-brand:hover {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0px #0e1d3e;
-  background-color: #286491;
+  background-color: #356f98;
 }
 
 .btn-offset-white {
@@ -113,7 +119,7 @@ h1, h2, h3, h4, .font-display {
   background-color: #0e1d3e;
   color: #ffffff;
   border: 2px solid #0e1d3e;
-  box-shadow: 4px 4px 0px #367fb5;
+  box-shadow: 4px 4px 0px #478ab9;
   font-family: var(--font-display);
   font-weight: 900;
   font-style: italic;
@@ -128,16 +134,17 @@ h1, h2, h3, h4, .font-display {
 
 .btn-offset-navy:hover {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #367fb5;
+  box-shadow: 2px 2px 0px #478ab9;
   background-color: #142750;
 }
 
-.btn-offset-slate, .btn-offset-brand {
+.btn-offset-slate,
+.btn-offset-brand {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #367fb5;
+  background-color: #478ab9;
   color: #ffffff;
   border: 2px solid #0e1d3e;
   box-shadow: 4px 4px 0px #0e1d3e;
@@ -153,10 +160,11 @@ h1, h2, h3, h4, .font-display {
   transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
 }
 
-.btn-offset-slate:hover, .btn-offset-brand:hover {
+.btn-offset-slate:hover,
+.btn-offset-brand:hover {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0px #0e1d3e;
-  background-color: #286491;
+  background-color: #356f98;
 }
 
 /* ================= PHYSIOFIT STICKER TAPE BADGE ================= */
@@ -181,8 +189,9 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ================= PHYSIOFIT SECTION BADGE ================= */
-.section-badge-gold, .section-badge-brand {
-  background-color: #367fb5;
+.section-badge-gold,
+.section-badge-brand {
+  background-color: #478ab9;
   color: #ffffff;
   font-family: var(--font-display);
   font-weight: 900;
@@ -208,12 +217,12 @@ h1, h2, h3, h4, .font-display {
   display: inline-block;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
-  box-shadow: 2px 2px 0px #367fb5;
+  box-shadow: 2px 2px 0px #478ab9;
 }
 
 /* ================= PHYSIOFIT HERO CRESCENT CURVE ================= */
 .hero-crescent-frame {
-  border: 7px solid #367fb5;
+  border: 7px solid #478ab9;
   border-radius: 260px 260px 40px 260px;
   overflow: hidden;
   position: relative;
@@ -238,7 +247,7 @@ h1, h2, h3, h4, .font-display {
   height: 32px;
   border-radius: 9999px;
   background: #0e1d3e;
-  color: #367fb5;
+  color: #478ab9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,21 +258,39 @@ h1, h2, h3, h4, .font-display {
   position: absolute;
   inset: -4px;
   border-radius: 9999px;
-  border: 2px solid #367fb5;
+  border: 2px solid #478ab9;
   animation: heroPulse 2.2s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
   pointer-events: none;
 }
 
 @keyframes heroPulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  70% { transform: scale(1.6); opacity: 0; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 
 /* Floating animation */
 @keyframes floatSlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .animate-float {
@@ -307,8 +334,8 @@ h1, h2, h3, h4, .font-display {
   filter: blur(12px);
   transform: translateY(32px) scale(0.97);
   transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -324,8 +351,8 @@ h1, h2, h3, h4, .font-display {
   filter: blur(12px);
   transform: translateX(-36px);
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -341,8 +368,8 @@ h1, h2, h3, h4, .font-display {
   filter: blur(12px);
   transform: translateX(36px);
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -358,8 +385,8 @@ h1, h2, h3, h4, .font-display {
   filter: blur(14px);
   transform: scale(0.92);
   transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -370,17 +397,39 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* Cascading stagger delays for cards and lists */
-.stagger-1 { transition-delay: 60ms; }
-.stagger-2 { transition-delay: 120ms; }
-.stagger-3 { transition-delay: 180ms; }
-.stagger-4 { transition-delay: 240ms; }
-.stagger-5 { transition-delay: 300ms; }
-.stagger-6 { transition-delay: 360ms; }
+.stagger-1 {
+  transition-delay: 60ms;
+}
+
+.stagger-2 {
+  transition-delay: 120ms;
+}
+
+.stagger-3 {
+  transition-delay: 180ms;
+}
+
+.stagger-4 {
+  transition-delay: 240ms;
+}
+
+.stagger-5 {
+  transition-delay: 300ms;
+}
+
+.stagger-6 {
+  transition-delay: 360ms;
+}
 
 /* Continuous sliding infinite marquee ribbon */
 @keyframes marqueeScroll {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {
@@ -392,8 +441,15 @@ h1, h2, h3, h4, .font-display {
 
 /* Ambient Subtle Floating */
 @keyframes softFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .animate-soft-float {
@@ -401,9 +457,9 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* Tactile Mobile Touch Feedback (Press state) */
-.btn-offset-gold:active, 
-.btn-offset-brand:active, 
-.btn-offset-white:active, 
+.btn-offset-gold:active,
+.btn-offset-brand:active,
+.btn-offset-white:active,
 .btn-offset-navy:active {
   transform: translate(2px, 2px) scale(0.97) !important;
   box-shadow: 1px 1px 0px #0e1d3e !important;
@@ -475,10 +531,6 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-/* Ensure modal always overlays everything on mobile */
-#bookingModal {
-  z-index: 999999 !important;
-}
-#mobileMenu {
-  z-index: 999998 !important;
+.animate-wave-float {
+  animation: waveBreathing 14s ease-in-out infinite alternate;
 }

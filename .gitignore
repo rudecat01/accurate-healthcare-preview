@@ -6,3 +6,4 @@ temp_*
 test_*
 crop-*
 *.tmp
+.env
