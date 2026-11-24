@@ -23,7 +23,7 @@ Your consultation for ${e.condition} (${g?"Home Physio":"NH-24 Mehrauli Clinic"}
 
 Location: Shop-1, Mehrauli Underpass, Near Vikranta Grand Farm House, NH-24, Mehrauli, Ghaziabad, UP
 Google Maps: https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7
-Clinic Phone: +91 76690 32765 / 64 / 63`);return`
+Clinic Phone: +91 99998 71475 / 76690 32764`);return`
         <div class="p-4 sm:p-5 hover:bg-slate-50/80 transition flex flex-col lg:flex-row lg:items-center justify-between gap-4" data-id="${e.id}">
           
           <!-- Left Info Block -->
