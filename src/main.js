@@ -279,8 +279,17 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Registering Appointment...';
       }
 
-      const name = document.getElementById('formName')?.value || 'Patient';
-      const phone = document.getElementById('formPhone')?.value || '';
+      const name = document.getElementById('formName')?.value.trim() || 'Patient';
+      const phone = document.getElementById('formPhone')?.value.trim() || '';
+      const digitsOnly = phone.replace(/\D/g, '');
+      if (digitsOnly.length < 10) {
+        alert('Please enter a valid 10-digit mobile number so our doctors can confirm your slot.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+        return;
+      }
       const careType = document.querySelector('input[name="careType"]:checked')?.value === 'Home Visit' ? 'home' : 'clinic';
       const location = document.getElementById('formLocation')?.value || '';
       const condition = document.getElementById('formCondition')?.value || 'General Consultation';
@@ -317,8 +326,17 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Registering...';
       }
 
-      const name = document.getElementById('modalName')?.value || 'Patient';
-      const phone = document.getElementById('modalPhone')?.value || '';
+      const name = document.getElementById('modalName')?.value.trim() || 'Patient';
+      const phone = document.getElementById('modalPhone')?.value.trim() || '';
+      const digitsOnly = phone.replace(/\D/g, '');
+      if (digitsOnly.length < 10) {
+        alert('Please enter a valid 10-digit mobile number so our doctors can confirm your slot.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+        return;
+      }
       const careType = document.querySelector('input[name="modalCareType"]:checked')?.value === 'home' ? 'home' : 'clinic';
       const location = document.getElementById('modalLocation')?.value || '';
       const condition = document.getElementById('modalCondition')?.value || 'General Consultation';

@@ -422,6 +422,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- CSV Export Handler ---
+  const exportCsvBtn = document.getElementById('exportCsvBtn');
+  if (exportCsvBtn) {
+    exportCsvBtn.addEventListener('click', () => {
+      if (!appointmentsCache || !appointmentsCache.length) {
+        alert('No appointment records available to export.');
+        return;
+      }
+      const headers = ['Booking Ref', 'Patient Name', 'Phone', 'Care Mode', 'Location', 'Condition', 'Status', 'Booking Date', 'Doctor'];
+      const rows = appointmentsCache.map(a => [
+        `"${a.booking_ref || ''}"`,
+        `"${(a.patient_name || '').replace(/"/g, '""')}"`,
+        `"${a.phone || ''}"`,
+        `"${a.care_mode === 'home' ? 'Home Physio' : 'Clinic Visit'}"`,
+        `"${(a.location || '').replace(/"/g, '""')}"`,
+        `"${(a.condition || '').replace(/"/g, '""')}"`,
+        `"${a.status || 'pending'}"`,
+        `"${a.created_at ? new Date(a.created_at).toLocaleDateString('en-IN') : ''}"`,
+        `"${(a.assigned_doctor || 'Dr. Manish Gupta & Dr. Vandana Choudhary').replace(/"/g, '""')}"`
+      ]);
+      const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `accurate_healthcare_appointments_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+
   // --- Realtime Updates ---
   function startRealtime() {
     subscribeToAppointments(payload => {

@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /admin.html
 Allow: /
 
 Sitemap: https://accuratehealthcare.co.in/sitemap.xml

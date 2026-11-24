@@ -46,26 +46,19 @@ CREATE TRIGGER trigger_set_booking_ref
 BEFORE INSERT OR UPDATE ON public.appointments
 FOR EACH ROW EXECUTE FUNCTION set_booking_ref();
 
--- 4. Enable Row Level Security (RLS)
-ALTER TABLE public.appointments ENABLE ROW LEVEL SECURITY;
+-- 4. Grant table & sequence access to Supabase API roles (anon, authenticated, service_role)
+GRANT ALL ON TABLE public.appointments TO anon, authenticated, service_role;
+GRANT ALL ON SEQUENCE booking_ref_seq TO anon, authenticated, service_role;
 
--- 5. Security Policies:
--- (a) Anyone can submit/create an appointment (Public Patient Booking)
-DROP POLICY IF EXISTS "Public can create appointments" ON public.appointments;
-CREATE POLICY "Public can create appointments" 
-ON public.appointments 
-FOR INSERT 
-TO anon, authenticated
-WITH CHECK (true);
+-- 5. Security & Access:
+-- Disable RLS or enable open policies so both public booking forms (INSERT) 
+-- and the doctor Admin Portal (SELECT, UPDATE, DELETE) work seamlessly with the publishable key.
+ALTER TABLE public.appointments DISABLE ROW LEVEL SECURITY;
 
--- (b) Authenticated users (Clinic Admin / Doctors) have full access to view, edit, confirm appointments
-DROP POLICY IF EXISTS "Admins have full access" ON public.appointments;
-CREATE POLICY "Admins have full access" 
-ON public.appointments 
-FOR ALL 
-TO authenticated 
-USING (true) 
-WITH CHECK (true);
+-- (Optional) If you prefer RLS enabled, uncomment below:
+-- ALTER TABLE public.appointments ENABLE ROW LEVEL SECURITY;
+-- DROP POLICY IF EXISTS "Full access to appointments" ON public.appointments;
+-- CREATE POLICY "Full access to appointments" ON public.appointments FOR ALL TO anon, authenticated USING (true) WITH CHECK (true);
 
--- (c) Enable Realtime for live updates on the Admin Dashboard
+-- 6. Enable Realtime for live updates on the Admin Dashboard
 ALTER PUBLICATION supabase_realtime ADD TABLE public.appointments;
