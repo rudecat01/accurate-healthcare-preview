@@ -6,18 +6,25 @@ art_dir = r'C:\Users\dhruv\.gemini\antigravity\brain\d929d5e8-1ca6-4dcf-802e-1bd
 
 dist_html = 'file:///' + os.path.abspath('dist/index.html').replace('\\', '/')
 
-# 1. Desktop 1440x950
-shot_desktop = os.path.join(art_dir, 'hero_desktop_crescent.png')
+# 1. 1920x1080 (Exact User Monitor Resolution from Screenshot)
+shot_1920 = os.path.join(art_dir, 'hero_bleed_1920.png')
 subprocess.run([
-    chrome, '--headless=new', '--disable-gpu', '--window-size=1440,950',
-    f'--screenshot={shot_desktop}', dist_html
+    chrome, '--headless=new', '--disable-gpu', '--window-size=1920,1080',
+    f'--screenshot={shot_1920}', dist_html
 ], check=True)
 
-# 2. Mobile 390x844
-shot_mobile = os.path.join(art_dir, 'hero_mobile_crescent.png')
+# 2. 1440x900 (Laptop)
+shot_1440 = os.path.join(art_dir, 'hero_bleed_1440.png')
+subprocess.run([
+    chrome, '--headless=new', '--disable-gpu', '--window-size=1440,900',
+    f'--screenshot={shot_1440}', dist_html
+], check=True)
+
+# 3. 390x844 (Mobile)
+shot_mobile = os.path.join(art_dir, 'hero_bleed_mobile.png')
 subprocess.run([
     chrome, '--headless=new', '--disable-gpu', '--window-size=390,844',
     f'--screenshot={shot_mobile}', dist_html
 ], check=True)
 
-print('Screenshots captured with Chrome headless.')
+print('Screenshots captured successfully.')
