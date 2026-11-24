@@ -2,6 +2,7 @@
 import { 
   loginAdmin, 
   logoutAdmin, 
+  sendPasswordResetEmail,
   getAdminSession, 
   fetchAppointments, 
   updateAppointmentStatus, 
@@ -132,6 +133,73 @@ document.addEventListener('DOMContentLoaded', () => {
       if (confirm('Are you sure you want to log out of the clinical dashboard?')) {
         await logoutAdmin();
         checkAuth();
+      }
+    });
+  }
+
+  // --- Password Reset via Gmail Handlers ---
+  const resetPasswordModal = document.getElementById('resetPasswordModal');
+  const openResetModalBtn = document.getElementById('openResetModalBtn');
+  const closeResetModalBtn = document.getElementById('closeResetModalBtn');
+  const resetPasswordForm = document.getElementById('resetPasswordForm');
+  const resetEmailInput = document.getElementById('resetEmail');
+  const resetFeedback = document.getElementById('resetFeedback');
+  const sendResetBtn = document.getElementById('sendResetBtn');
+
+  if (openResetModalBtn) {
+    openResetModalBtn.addEventListener('click', () => {
+      if (resetPasswordModal) {
+        if (resetEmailInput && loginEmail.value) {
+          resetEmailInput.value = loginEmail.value.includes('@') ? loginEmail.value : '';
+        }
+        resetFeedback.classList.add('hidden');
+        resetFeedback.innerHTML = '';
+        resetPasswordModal.classList.remove('hidden');
+      }
+    });
+  }
+
+  if (closeResetModalBtn) {
+    closeResetModalBtn.addEventListener('click', () => {
+      resetPasswordModal?.classList.add('hidden');
+    });
+  }
+
+  if (resetPasswordForm) {
+    resetPasswordForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = resetEmailInput.value.trim();
+      if (!email) return;
+
+      sendResetBtn.disabled = true;
+      sendResetBtn.innerHTML = '<span class="inline-block animate-spin mr-1">⏳</span> Sending...';
+
+      const res = await sendPasswordResetEmail(email);
+
+      sendResetBtn.disabled = false;
+      sendResetBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        <span>Send Reset Link to Gmail</span>
+      `;
+
+      if (res.success) {
+        resetFeedback.className = 'p-3 rounded-xl text-xs font-bold leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-800';
+        resetFeedback.innerHTML = `
+          <div class="flex items-center gap-2 mb-1.5 text-emerald-900 font-black">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Reset Link Dispatched!</span>
+          </div>
+          <span>A secure reset link has been dispatched to <b>${email}</b>. Please check your Gmail inbox and Spam folder.</span>
+          <a href="https://mail.google.com" target="_blank" class="mt-3.5 inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black uppercase text-[11px] shadow-[2px_2px_0px_#0e1d3e] transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Open Gmail Inbox</span>
+          </a>
+        `;
+        resetFeedback.classList.remove('hidden');
+      } else {
+        resetFeedback.className = 'p-3 rounded-xl text-xs font-bold leading-relaxed bg-rose-50 border border-rose-200 text-rose-800';
+        resetFeedback.textContent = res.error || 'Failed to send reset link.';
+        resetFeedback.classList.remove('hidden');
       }
     });
   }
