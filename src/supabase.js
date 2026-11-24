@@ -9,10 +9,11 @@ const STORAGE_KEY_MOCK_APPOINTMENTS = 'accurate_mock_appointments';
 const STORAGE_KEY_ADMIN_SESSION = 'accurate_admin_session';
 
 export const DEFAULT_SUPABASE_URL = 'https://esokkxwdzepdfsexebjr.supabase.co';
+export const DEFAULT_SUPABASE_ANON_KEY = 'sb_publishable_TACvtgXAseF1RXwLRwrLRQ_eeiAPlp3';
 
 export function getSupabaseCredentials() {
   const url = localStorage.getItem(STORAGE_KEY_URL) || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_URL) || DEFAULT_SUPABASE_URL;
-  const key = localStorage.getItem(STORAGE_KEY_ANON) || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_ANON_KEY) || '';
+  const key = localStorage.getItem(STORAGE_KEY_ANON) || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_ANON_KEY) || DEFAULT_SUPABASE_ANON_KEY;
   return { url: url.trim(), key: key.trim() };
 }
 
