@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `Your consultation for ${item.condition} (${isHome ? 'Home Physio' : 'NH-24 Mehrauli Clinic'}) is confirmed with Dr. Manish Gupta & Dr. Vandana Choudhary.\n\n` +
         `Location: Shop-1, Mehrauli Underpass, Near Vikranta Grand Farm House, NH-24, Mehrauli, Ghaziabad, UP\n` +
         `Google Maps: https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7\n` +
-        `Clinic Phone: +91 76690 32765 / 64 / 63`
+        `Clinic Phone: +91 99998 71475 / 76690 32764`
       );
 
       return `
