@@ -239,8 +239,8 @@
     </div>
   </div>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-28 overflow-hidden bg-[#f8f8fa]">
+  <!-- ================= HERO SECTION (EXACT PHYSIOFIT FULL-BLEED CRESCENT ARCHITECTURE) ================= -->
+  <section class="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-[#f8f8fa] min-h-[90vh] lg:min-h-screen flex items-center">
 
     <!-- Flowing 3D Cylindrical Wave Grid in Background (PhysioFit Signature) -->
     <div class="absolute inset-0 pointer-events-none opacity-45 overflow-hidden flex items-center justify-center">
@@ -248,183 +248,214 @@
         class="w-[1700px] max-w-none transform scale-110 translate-y-8 animate-wave-float">
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <!-- Full-Bleed Crescent Visual Layer (Absolute on Desktop, Flush to Top & Right Viewport Edge, Matches PhysioFit 1:1) -->
+    <div class="hidden lg:block absolute top-0 right-0 h-full w-[65vw] xl:w-[62vw] 2xl:w-[60vw] pointer-events-none z-10 select-none overflow-visible">
+      <div class="relative h-full w-full">
+        <!-- Crescent Image Bleed -->
+        <img src="./images/hero-crescent-bleed.png"
+          alt="Accurate Healthcare Senior Clinical Directors Dr. Manish Gupta & Dr. Vandana Choudhary"
+          class="absolute top-0 right-0 h-full w-auto max-w-none object-contain object-right pointer-events-auto select-none" />
 
-        <!-- Left Hero Content -->
-        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-
-          <!-- Webflow Störer Component (Pulsing Pin Pill) -->
-          <div class="hero-stoerer reveal-blur-up">
-            <div class="hero-stoerer-pin">
-              <div class="hero-stoerer-pulse"></div>
-              <i data-lucide="map-pin" class="w-4 h-4 text-[#367fb5]"></i>
+        <!-- Tilted PhysioFit Signature Sticker Badge (Matches PhysioFit 1:1 with Pin Box) -->
+        <div class="absolute left-[10%] xl:left-[15%] 2xl:left-[18%] top-[27%] xl:top-[29%] z-20 pointer-events-auto transform -rotate-6 hover:rotate-0 transition-transform">
+          <div class="bg-slate-950 text-white p-2.5 sm:p-3 pr-4 sm:pr-6 border-2 border-slate-900 shadow-[5px_5px_0px_#367fb5] flex items-center gap-3 select-none">
+            <!-- Pin Square Icon (Exact PhysioFit Signature) -->
+            <div class="w-9 h-9 sm:w-10 sm:h-10 bg-[#367fb5] text-white flex items-center justify-center shrink-0 relative">
+              <div class="absolute inset-0 border-2 border-[#367fb5] animate-ping opacity-30 pointer-events-none"></div>
+              <i data-lucide="map-pin" class="w-5 h-5 fill-white text-white"></i>
             </div>
             <div class="text-left">
-              <span class="text-[9px] uppercase font-bold text-slate-500 block leading-none">Available Facilities</span>
-              <span
-                class="text-xs sm:text-sm font-black italic uppercase text-navy-900 block leading-tight mt-0.5">Mehrauli
-                Underpass (NH-24) &amp; Doorstep Home Visits</span>
-            </div>
-          </div>
-
-          <!-- Eyebrow -->
-          <p
-            class="text-xs sm:text-sm font-black italic uppercase tracking-widest text-[#367fb5] block reveal-blur-up stagger-1">
-            Physiotherapy & Neuro Rehabilitation in Your Area
-          </p>
-
-          <!-- Bold Grotesque Headline (Matches PhysioFit 'BLEIBE MIT UNS STETS IN BEWEGUNG') -->
-          <h1
-            class="text-4xl sm:text-6xl lg:text-[72px] font-black italic tracking-tight text-slate-900 uppercase leading-[0.98] reveal-blur-up stagger-2">
-            Every <br />
-            <span class="relative inline-block text-[#367fb5] px-2 sm:px-3">
-              Move
-              <!-- Hand-drawn SVG Oval Circle from PhysioFit -->
-              <svg aria-hidden="true" fill="none"
-                class="absolute -inset-x-5 -inset-y-2 sm:-inset-x-7 sm:-inset-y-3.5 w-[130%] h-[142%] text-[#367fb5] pointer-events-none"
-                viewBox="0 0 395 108" preserveAspectRatio="none">
-                <path clip-rule="evenodd"
-                  d="M296.007 98.7137C341.382 91.1447 365.062 81.0558 372.975 65.8636C374.566 62.7271 376.351 60.9034 379.796 58.7267C400.473 45.6053 398.503 29.2041 374.857 17.2597C349.939 4.71344 277.454 -2.05456 198.952 0.851507C187.709 1.25545 169.535 1.68851 158.627 1.75054C22.7257 2.62542 -25.3567 34.902 13.4035 63.2519C37.0008 80.5624 73.1732 90.1748 134.358 95.6136C192.615 100.742 271.251 92.6625 328.705 77.2299C343.72 73.1956 345.263 75.4252 340.785 77.7612C325.001 86.0511 283.58 95.0666 240.753 99.0249C202.547 102.573 184.913 103.854 156.677 101.581C145.644 100.707 138.881 104.762 155.83 106.756C173.796 108.775 246.705 106.937 296.007 98.7137ZM28.6736 29.7958C47.7347 17.7101 89.8689 11.1006 157.338 9.72737C382.813 5.15751 360.889 54.5915 360.889 54.5915C360.681 54.6356 286.797 90.7719 147.532 89.2627C79.0153 88.5719 -28.4031 66.0004 28.6736 29.7958ZM299.057 11.1362C276.152 7.27906 303.296 9.21209 337.345 13.8296C400.81 22.4248 380.51 43.1088 374.33 46.288C356.72 28.0659 331.106 16.51 299.057 11.1362Z"
-                  fill="currentColor" fill-rule="evenodd"></path>
-              </svg>
-            </span> <br />
-            Matters.
-          </h1>
-
-          <p
-            class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal reveal-blur-up stagger-3">
-            Take your health to the next level with customized therapeutic regimens and senior clinical care. From acute
-            spine relief to life-changing stroke neuro-rehabilitation by <strong>specialists with 17+ years of
-              experience</strong>. Ready? Let's begin!
-          </p>
-
-          <!-- Dual Hero Action Buttons (PhysioFit Offset Shadows) -->
-          <div
-            class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2 reveal-blur-up stagger-4">
-            <button data-type="clinic"
-              class="open-booking-modal btn-offset-gold text-sm sm:text-base py-3.5 px-8 w-full sm:w-auto">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-              <span>BOOK APPOINTMENT</span>
-            </button>
-            <a href="#locations" class="btn-offset-white text-sm sm:text-base py-3.5 px-8 w-full sm:w-auto">
-              <i data-lucide="map-pin" class="w-4 h-4 text-gold-600"></i>
-              <span>SELECT LOCATION</span>
-            </a>
-          </div>
-
-          <!-- Partners / Trust Strip (Matches PhysioFit 'UNSERE NAMHAFTEN PARTNER') -->
-          <div class="pt-8 border-t border-slate-200/80 reveal-blur-up stagger-5">
-            <span
-              class="text-[11px] font-black italic uppercase tracking-wider text-slate-400 block mb-3 text-center lg:text-left">
-              CLINICAL RECOGNITION & STANDARDS
-            </span>
-            <div
-              class="flex flex-wrap items-center justify-center lg:justify-start gap-6 sm:gap-8 opacity-75 grayscale hover:grayscale-0 transition">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
-                <i data-lucide="award" class="w-4 h-4 text-[#367fb5]"></i> <span data-counter-target="17"
-                  data-counter-suffix="+">17+</span> Yrs Practice
+              <div class="text-[10px] sm:text-xs font-black italic tracking-widest text-[#bce0ee] uppercase leading-none">
+                NOW IN GHAZIABAD
               </div>
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
-                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> MPT (Neurology) Certified
-              </div>
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
-                <i data-lucide="users" class="w-4 h-4 text-navy-900"></i> <span data-counter-target="10000"
-                  data-counter-suffix="+">10,000+</span> Recovered Patients
-              </div>
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
-                <i data-lucide="home" class="w-4 h-4 text-[#367fb5]"></i> Home Care Across NCR
+              <div class="text-sm sm:text-lg xl:text-xl font-black italic tracking-tight text-white uppercase mt-1 leading-none">
+                CLINIC &amp; HOME VISITS
               </div>
             </div>
           </div>
-
         </div>
 
-        <!-- Right Hero Visual Card (PhysioFit Signature Crescent Arc, Dashed Orbit & Tilted Sticker) -->
-        <div
-          class="lg:col-span-6 relative flex flex-col items-center justify-center lg:justify-end mt-8 lg:mt-0 reveal-blur-right stagger-2">
-          <div class="relative w-full max-w-lg lg:max-w-none">
-
-            <!-- Hero Crescent Graphic with Transparent Framing -->
-            <div class="relative">
-              <img src="./images/hero-crescent-web.png"
-                alt="Accurate Healthcare Senior Clinical Directors Dr. Manish Gupta & Dr. Vandana Choudhary"
-                class="w-full h-auto object-contain block drop-shadow-2xl select-none" />
-
-              <!-- Tilted PhysioFit Signature Sticker Badge (Matches Image 2 in Brand Blue) -->
-              <div class="absolute left-0 sm:-left-2 top-[26%] sm:top-[28%] z-20 transform -rotate-6 select-none pointer-events-none hover:rotate-0 transition-transform">
-                <div class="bg-slate-950 text-white px-3 sm:px-5 py-2 sm:py-2.5 border-2 border-slate-900 shadow-[4px_4px_0px_#367fb5]">
-                  <div class="text-[9px] sm:text-[11px] font-black italic tracking-widest text-[#bce0ee] uppercase leading-none">
-                    NOW IN GHAZIABAD
-                  </div>
-                  <div class="text-xs sm:text-base lg:text-lg font-black italic tracking-tight text-white uppercase mt-1 leading-none">
-                    CLINIC &amp; HOME VISITS
-                  </div>
-                </div>
+        <!-- Floating Google Reviews Pill (Top Right, Clickable) -->
+        <a href="https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7" target="_blank" rel="noopener noreferrer"
+          class="pointer-events-auto absolute top-24 sm:top-28 right-6 sm:right-10 bg-white hover:bg-slate-50 p-2.5 sm:p-3 rounded-2xl shadow-[4px_4px_0px_#0e1d3e] border-2 border-navy-900 flex items-center gap-2 sm:gap-3 animate-soft-float z-20 cursor-pointer hover:scale-105 transition-all group"
+          title="Click to view 100+ verified patient reviews on Google Maps">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#367fb5] text-white flex items-center justify-center font-bold shrink-0 group-hover:bg-[#286491] transition">
+            <i data-lucide="star" class="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white text-white"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-sm sm:text-base font-black italic text-slate-900 leading-none">4.8 / 5</span>
+              <div class="inline-flex items-center gap-0.5 text-xs select-none" title="4.8 out of 5 stars">
+                <span class="text-[#367fb5]">★</span>
+                <span class="text-[#367fb5]">★</span>
+                <span class="text-[#367fb5]">★</span>
+                <span class="text-[#367fb5]">★</span>
+                <span class="relative inline-block text-slate-300 leading-none">
+                  ★
+                  <span class="absolute top-0 left-0 overflow-hidden w-[80%] text-[#367fb5] leading-none">★</span>
+                </span>
               </div>
-
-              <!-- Floating Badge: Rating (4.8 / 5 Verified Google Rating - Clickable) -->
-              <a href="https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7" target="_blank" rel="noopener noreferrer"
-                class="absolute -top-4 sm:-top-5 right-2 sm:right-6 bg-white hover:bg-slate-50 p-2 sm:p-3 rounded-2xl shadow-[4px_4px_0px_#0e1d3e] border-2 border-navy-900 flex items-center gap-2 sm:gap-3 animate-soft-float z-20 cursor-pointer hover:scale-105 transition-all group"
-                title="Click to view 100+ verified patient reviews on Google Maps">
-                <div
-                  class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#367fb5] text-white flex items-center justify-center font-bold shrink-0 group-hover:bg-[#286491] transition">
-                  <i data-lucide="star" class="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white text-white"></i>
-                </div>
-                <div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="text-sm sm:text-base font-black italic text-slate-900 leading-none">4.8 / 5</span>
-                    <div class="inline-flex items-center gap-0.5 text-xs select-none" title="4.8 out of 5 stars">
-                      <span class="text-[#367fb5]">★</span>
-                      <span class="text-[#367fb5]">★</span>
-                      <span class="text-[#367fb5]">★</span>
-                      <span class="text-[#367fb5]">★</span>
-                      <span class="relative inline-block text-slate-300 leading-none">
-                        ★
-                        <span class="absolute top-0 left-0 overflow-hidden w-[80%] text-[#367fb5] leading-none">★</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-1">
-                    <span
-                      class="text-[10px] font-bold text-slate-500 whitespace-nowrap group-hover:text-navy-900 transition">100+
-                      Verified Google Reviews</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none"
-                      stroke="#367fb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                      class="inline-block opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" x2="21" y1="14" y2="3" />
-                    </svg>
-                  </div>
-                </div>
-              </a>
             </div>
-
-            <!-- Bottom Clinical Directors Credentials Pill -->
-            <div class="mt-3 sm:mt-4 w-full bg-white/95 backdrop-blur-sm border-2 border-slate-200/90 rounded-2xl p-3 sm:p-4 shadow-[4px_4px_0px_#0e1d3e] text-left">
-              <div class="flex items-center justify-between gap-2 flex-wrap mb-1">
-                <span class="inline-block bg-[#0e1d3e] text-white text-[10px] sm:text-xs font-black italic uppercase tracking-wider px-2.5 py-0.5 rounded">
-                  SENIOR CLINICAL DIRECTORS
-                </span>
-                <span class="text-[10px] sm:text-xs font-bold text-slate-500 flex items-center gap-1">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  34+ Years Combined Clinical Experience
-                </span>
-              </div>
-              <h3 class="text-sm sm:text-base lg:text-lg font-black italic uppercase text-slate-900 tracking-tight leading-tight">
-                Dr. Manish Gupta &amp; Dr. Vandana Choudhary
-              </h3>
-              <p class="text-[11px] sm:text-xs font-bold text-slate-600 mt-0.5">
-                Dr. Manish Gupta: <span class="text-navy-900 font-black">MPT (Neurology)</span> • Dr. Vandana Choudhary: <span class="text-navy-900 font-black">BPT, MPT (Ortho)</span>
-              </p>
+            <div class="flex items-center gap-1">
+              <span class="text-[10px] font-bold text-slate-500 whitespace-nowrap group-hover:text-navy-900 transition">100+ Verified Google Reviews</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="#367fb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                class="inline-block opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" x2="21" y1="14" y2="3" />
+              </svg>
             </div>
           </div>
+        </a>
 
+        <!-- Clinical Directors Identification Pill (Bottom Right) -->
+        <div class="pointer-events-auto absolute bottom-6 right-6 sm:right-10 bg-white/95 backdrop-blur-sm border-2 border-slate-200/90 rounded-2xl p-3 sm:p-4 shadow-[4px_4px_0px_#0e1d3e] text-left max-w-sm">
+          <div class="flex items-center justify-between gap-2 flex-wrap mb-1">
+            <span class="inline-block bg-[#0e1d3e] text-white text-[10px] font-black italic uppercase tracking-wider px-2 py-0.5 rounded">
+              SENIOR CLINICAL DIRECTORS
+            </span>
+            <span class="text-[10px] font-bold text-slate-500 flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              34+ Yrs Combined Experience
+            </span>
+          </div>
+          <h3 class="text-sm sm:text-base font-black italic uppercase text-slate-900 tracking-tight leading-tight">
+            Dr. Manish Gupta &amp; Dr. Vandana Choudhary
+          </h3>
+          <p class="text-[11px] font-bold text-slate-600 mt-0.5">
+            Dr. Manish: <span class="text-navy-900 font-black">MPT (Neurology)</span> • Dr. Vandana: <span class="text-navy-900 font-black">BPT, MPT (Ortho)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Container (Left Side on Desktop) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
+      <div class="max-w-xl xl:max-w-2xl space-y-6 text-center lg:text-left">
+
+        <!-- Webflow Störer Component (Pulsing Pin Pill) -->
+        <div class="hero-stoerer reveal-blur-up">
+          <div class="hero-stoerer-pin">
+            <div class="hero-stoerer-pulse"></div>
+            <i data-lucide="map-pin" class="w-4 h-4 text-[#367fb5]"></i>
+          </div>
+          <div class="text-left">
+            <span class="text-[9px] uppercase font-bold text-slate-500 block leading-none">Available Facilities</span>
+            <span
+              class="text-xs sm:text-sm font-black italic uppercase text-navy-900 block leading-tight mt-0.5">Mehrauli
+              Underpass (NH-24) &amp; Doorstep Home Visits</span>
+          </div>
+        </div>
+
+        <!-- Eyebrow -->
+        <p
+          class="text-xs sm:text-sm font-black italic uppercase tracking-widest text-[#367fb5] block reveal-blur-up stagger-1">
+          Physiotherapy & Neuro Rehabilitation in Your Area
+        </p>
+
+        <!-- Bold Grotesque Headline (Matches PhysioFit 'BLEIBE MIT UNS STETS IN BEWEGUNG') -->
+        <h1
+          class="text-4xl sm:text-6xl lg:text-[70px] font-black italic tracking-tight text-slate-900 uppercase leading-[0.98] reveal-blur-up stagger-2">
+          Every <br />
+          <span class="relative inline-block text-[#367fb5] px-2 sm:px-3">
+            Move
+            <!-- Hand-drawn SVG Oval Circle from PhysioFit -->
+            <svg aria-hidden="true" fill="none"
+              class="absolute -inset-x-5 -inset-y-2 sm:-inset-x-7 sm:-inset-y-3.5 w-[130%] h-[142%] text-[#367fb5] pointer-events-none"
+              viewBox="0 0 395 108" preserveAspectRatio="none">
+              <path clip-rule="evenodd"
+                d="M296.007 98.7137C341.382 91.1447 365.062 81.0558 372.975 65.8636C374.566 62.7271 376.351 60.9034 379.796 58.7267C400.473 45.6053 398.503 29.2041 374.857 17.2597C349.939 4.71344 277.454 -2.05456 198.952 0.851507C187.709 1.25545 169.535 1.68851 158.627 1.75054C22.7257 2.62542 -25.3567 34.902 13.4035 63.2519C37.0008 80.5624 73.1732 90.1748 134.358 95.6136C192.615 100.742 271.251 92.6625 328.705 77.2299C343.72 73.1956 345.263 75.4252 340.785 77.7612C325.001 86.0511 283.58 95.0666 240.753 99.0249C202.547 102.573 184.913 103.854 156.677 101.581C145.644 100.707 138.881 104.762 155.83 106.756C173.796 108.775 246.705 106.937 296.007 98.7137ZM28.6736 29.7958C47.7347 17.7101 89.8689 11.1006 157.338 9.72737C382.813 5.15751 360.889 54.5915 360.889 54.5915C360.681 54.6356 286.797 90.7719 147.532 89.2627C79.0153 88.5719 -28.4031 66.0004 28.6736 29.7958ZM299.057 11.1362C276.152 7.27906 303.296 9.21209 337.345 13.8296C400.81 22.4248 380.51 43.1088 374.33 46.288C356.72 28.0659 331.106 16.51 299.057 11.1362Z"
+                fill="currentColor" fill-rule="evenodd"></path>
+            </svg>
+          </span> <br />
+          Matters.
+        </h1>
+
+        <p
+          class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal reveal-blur-up stagger-3">
+          Take your health to the next level with customized therapeutic regimens and senior clinical care. From acute
+          spine relief to life-changing stroke neuro-rehabilitation by <strong>specialists with 17+ years of
+            experience</strong>. Ready? Let's begin!
+        </p>
+
+        <!-- Dual Hero Action Buttons (PhysioFit Offset Shadows) -->
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2 reveal-blur-up stagger-4">
+          <button data-type="clinic"
+            class="open-booking-modal btn-offset-gold text-sm sm:text-base py-3.5 px-8 w-full sm:w-auto">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span>BOOK APPOINTMENT</span>
+          </button>
+          <a href="#locations" class="btn-offset-white text-sm sm:text-base py-3.5 px-8 w-full sm:w-auto">
+            <i data-lucide="map-pin" class="w-4 h-4 text-gold-600"></i>
+            <span>SELECT LOCATION</span>
+          </a>
+        </div>
+
+        <!-- Partners / Trust Strip (Matches PhysioFit 'UNSERE NAMHAFTEN PARTNER') -->
+        <div class="pt-8 border-t border-slate-200/80 reveal-blur-up stagger-5">
+          <span
+            class="text-[11px] font-black italic uppercase tracking-wider text-slate-400 block mb-3 text-center lg:text-left">
+            CLINICAL RECOGNITION & STANDARDS
+          </span>
+          <div
+            class="flex flex-wrap items-center justify-center lg:justify-start gap-6 sm:gap-8 opacity-75 grayscale hover:grayscale-0 transition">
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
+              <i data-lucide="award" class="w-4 h-4 text-[#367fb5]"></i> <span data-counter-target="17"
+                data-counter-suffix="+">17+</span> Yrs Practice
+            </div>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> MPT (Neurology) Certified
+            </div>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
+              <i data-lucide="users" class="w-4 h-4 text-navy-900"></i> <span data-counter-target="10000"
+                data-counter-suffix="+">10,000+</span> Recovered Patients
+            </div>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600">
+              <i data-lucide="home" class="w-4 h-4 text-[#367fb5]"></i> Home Care Across NCR
+            </div>
           </div>
         </div>
 
       </div>
+
+      <!-- Mobile / Tablet Crescent Card (Visible only on < lg screens) -->
+      <div class="lg:hidden mt-10 relative max-w-lg mx-auto">
+        <div class="relative">
+          <img src="./images/hero-crescent-web.png"
+            alt="Accurate Healthcare Senior Clinical Directors Dr. Manish Gupta & Dr. Vandana Choudhary"
+            class="w-full h-auto object-contain block drop-shadow-xl" />
+
+          <!-- Mobile Tilted Sticker -->
+          <div class="absolute left-1 top-[28%] z-20 transform -rotate-6 select-none">
+            <div class="bg-slate-950 text-white p-2 border-2 border-slate-900 shadow-[3px_3px_0px_#367fb5] flex items-center gap-2">
+              <div class="w-7 h-7 bg-[#367fb5] text-white flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 fill-white text-white"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-[8px] font-black italic tracking-widest text-[#bce0ee] uppercase leading-none">NOW IN GHAZIABAD</div>
+                <div class="text-xs font-black italic tracking-tight text-white uppercase mt-0.5 leading-none">CLINIC &amp; HOME VISITS</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Floating Rating -->
+          <a href="https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7" target="_blank" rel="noopener noreferrer"
+            class="absolute -top-3 right-2 bg-white p-2 rounded-xl shadow-[3px_3px_0px_#0e1d3e] border border-navy-900 flex items-center gap-2 z-20">
+            <span class="text-xs font-black italic text-slate-900">4.8 ★</span>
+            <span class="text-[9px] font-bold text-slate-500">100+ Reviews</span>
+          </a>
+        </div>
+
+        <!-- Mobile Doctor Credentials -->
+        <div class="mt-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-left">
+          <span class="text-[9px] font-black italic uppercase bg-[#0e1d3e] text-white px-2 py-0.5 rounded">SENIOR CLINICAL DIRECTORS</span>
+          <h4 class="text-sm font-black italic uppercase text-slate-900 mt-1">Dr. Manish Gupta &amp; Dr. Vandana Choudhary</h4>
+          <p class="text-[10px] font-bold text-slate-600 mt-0.5">Dr. Manish: MPT (Neurology) • Dr. Vandana: BPT, MPT (Ortho)</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
