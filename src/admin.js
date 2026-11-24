@@ -373,9 +373,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const waPhone = cleanPhone.startsWith('91') ? cleanPhone : ('91' + cleanPhone);
       const waText = encodeURIComponent(
         `Hello ${item.patient_name}, regarding your physiotherapy appointment at Accurate Healthcare (Ref: ${item.booking_ref}):\n\n` +
-        `Your consultation for ${item.condition} (${isHome ? 'Home Physio' : 'NH-24 Ghaziabad Clinic'}) is confirmed with Dr. Manish Gupta & Dr. Vandana Choudhary.\n\n` +
-        `Location: Ground Floor, 2C-Tower, Landcraft Golflinks Society, NH-24 Ghaziabad.\n` +
-        `Clinic Phone: +91 99998 71475`
+        `Your consultation for ${item.condition} (${isHome ? 'Home Physio' : 'NH-24 Mehrauli Clinic'}) is confirmed with Dr. Manish Gupta & Dr. Vandana Choudhary.\n\n` +
+        `Location: Shop-1, Mehrauli Underpass, Near Vikranta Grand Farm House, NH-24, Mehrauli, Ghaziabad, UP\n` +
+        `Google Maps: https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7\n` +
+        `Clinic Phone: +91 76690 32765 / 64 / 63`
       );
 
       return `

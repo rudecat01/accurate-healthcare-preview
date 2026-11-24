@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const isHome = booking.care_mode === 'home';
-    const cleanPhone = '919999871475';
+    const cleanPhone = '917669032765';
     const waMessage = encodeURIComponent(
       `Hello Dr. Manish Gupta, I have a query regarding my Accurate Healthcare booking:\n\n` +
       `📋 *Booking Reference:* ${booking.booking_ref}\n` +
