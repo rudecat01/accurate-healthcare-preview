@@ -200,14 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const isHome = booking.care_mode === 'home';
     const cleanPhone = '919999871475';
     const waMessage = encodeURIComponent(
-      `Hello Dr. Manish Gupta, I have registered an appointment on the Accurate Healthcare portal.\n\n` +
+      `Hello Dr. Manish Gupta, I have a query regarding my Accurate Healthcare booking:\n\n` +
       `📋 *Booking Reference:* ${booking.booking_ref}\n` +
       `👤 *Patient:* ${booking.patient_name}\n` +
       `📞 *Phone:* ${booking.phone}\n` +
       `🏥 *Care Mode:* ${isHome ? 'Home Physio Visit' : 'NH-24 Clinic Consultation'}\n` +
       (isHome && booking.location ? `📍 *Location:* ${booking.location}\n` : '') +
       `🩺 *Condition:* ${booking.condition}\n\n` +
-      `Kindly confirm my consultation slot.`
+      `Kindly assist me with my queries.`
     );
 
     modal.innerHTML = `
@@ -243,14 +243,15 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <p class="text-[11px] text-slate-500 mb-5 leading-relaxed">
-          Dr. Manish Gupta & Dr. Vandana Choudhary's team will review your slot. You can also send this reference via WhatsApp for instant confirmation.
-        </p>
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 mb-5 text-emerald-900 text-xs font-bold flex items-center gap-2.5 text-left">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="leading-snug">You will be notified on WhatsApp when your booking is confirmed.</span>
+        </div>
 
         <div class="space-y-2.5">
           <a href="https://wa.me/${cleanPhone}?text=${waMessage}" target="_blank" class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black italic uppercase text-xs sm:text-sm shadow-[3px_3px_0px_#0e1d3e] flex items-center justify-center gap-2 transition active:scale-95">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            <span>Notify on WhatsApp (+91 99998 71475)</span>
+            <span>Contact on WhatsApp for More Queries</span>
           </a>
 
           <button id="closeSuccessPopupBtn" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-black italic uppercase text-xs border border-slate-300 transition">

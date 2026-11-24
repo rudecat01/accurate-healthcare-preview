@@ -484,6 +484,11 @@ h4,
     display: flex !important;
   }
 
+  #floatingNavbar header {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   #mobileMenuBtn {
     display: flex !important;
     align-items: center !important;
@@ -492,10 +497,10 @@ h4,
     margin-top: auto !important;
     margin-bottom: auto !important;
     margin-left: auto !important;
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    min-height: 42px !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
     padding: 0 !important;
     box-sizing: border-box !important;
     appearance: none !important;
@@ -509,6 +514,15 @@ h4,
     transition: all 0.15s ease !important;
   }
 
+  @media (min-width: 640px) {
+    #mobileMenuBtn {
+      width: 42px !important;
+      height: 42px !important;
+      min-width: 42px !important;
+      min-height: 42px !important;
+    }
+  }
+
   #mobileMenuBtn:hover {
     background-color: #e2e8f0 !important;
   }
@@ -520,9 +534,16 @@ h4,
   #mobileMenuBtn svg {
     display: block !important;
     margin: auto !important;
-    width: 22px !important;
-    height: 22px !important;
+    width: 20px !important;
+    height: 20px !important;
     pointer-events: none !important;
+  }
+
+  @media (min-width: 640px) {
+    #mobileMenuBtn svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
   }
 
   @media (min-width: 1280px) {
