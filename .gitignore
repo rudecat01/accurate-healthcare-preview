@@ -7,3 +7,9 @@ test_*
 crop-*
 *.tmp
 .env
+*.zip
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+Thumbs.db

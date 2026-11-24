@@ -1,5 +1,5 @@
 -- ========================================================
--- ACCURATE HEALTHCARE - SUPABASE BACKEND SCHEMA
+-- ACCURATE HEALTHCARE - PRODUCTION SUPABASE BACKEND SCHEMA
 -- Copy and paste this directly into your Supabase SQL Editor:
 -- https://supabase.com/dashboard/project/_/sql/new
 -- ========================================================
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS public.appointments (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- 2. Index for high performance querying
+-- 2. Indexes for high performance querying
 CREATE INDEX IF NOT EXISTS idx_appointments_status ON public.appointments(status);
 CREATE INDEX IF NOT EXISTS idx_appointments_created_at ON public.appointments(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_appointments_phone ON public.appointments(phone);
@@ -46,19 +46,41 @@ CREATE TRIGGER trigger_set_booking_ref
 BEFORE INSERT OR UPDATE ON public.appointments
 FOR EACH ROW EXECUTE FUNCTION set_booking_ref();
 
--- 4. Grant table & sequence access to Supabase API roles (anon, authenticated, service_role)
-GRANT ALL ON TABLE public.appointments TO anon, authenticated, service_role;
-GRANT ALL ON SEQUENCE booking_ref_seq TO anon, authenticated, service_role;
+-- 4. Enable Row Level Security (RLS) - Medical Data Protection
+ALTER TABLE public.appointments ENABLE ROW LEVEL SECURITY;
 
--- 5. Security & Access:
--- Disable RLS or enable open policies so both public booking forms (INSERT) 
--- and the doctor Admin Portal (SELECT, UPDATE, DELETE) work seamlessly with the publishable key.
-ALTER TABLE public.appointments DISABLE ROW LEVEL SECURITY;
+-- Revoke all direct permissions from anon, grant controlled access
+REVOKE ALL ON TABLE public.appointments FROM anon;
+GRANT INSERT ON TABLE public.appointments TO anon;
+GRANT USAGE ON SEQUENCE booking_ref_seq TO anon;
 
--- (Optional) If you prefer RLS enabled, uncomment below:
--- ALTER TABLE public.appointments ENABLE ROW LEVEL SECURITY;
--- DROP POLICY IF EXISTS "Full access to appointments" ON public.appointments;
--- CREATE POLICY "Full access to appointments" ON public.appointments FOR ALL TO anon, authenticated USING (true) WITH CHECK (true);
+-- Staff role permissions (authenticated Supabase users)
+GRANT ALL ON TABLE public.appointments TO authenticated;
+GRANT ALL ON SEQUENCE booking_ref_seq TO authenticated;
+
+-- Service role permissions (admin backend functions)
+GRANT ALL ON TABLE public.appointments TO service_role;
+GRANT ALL ON SEQUENCE booking_ref_seq TO service_role;
+
+-- 5. Strict RLS Policies
+
+-- Policy A: Public anonymous visitors can ONLY insert new appointment bookings.
+-- They CANNOT select/read existing patient data, update, or delete records.
+DROP POLICY IF EXISTS "Allow public booking insert" ON public.appointments;
+CREATE POLICY "Allow public booking insert" 
+ON public.appointments 
+FOR INSERT 
+TO anon 
+WITH CHECK (true);
+
+-- Policy B: Authenticated clinic staff have full access (view, update status, add notes, delete)
+DROP POLICY IF EXISTS "Allow staff full access" ON public.appointments;
+CREATE POLICY "Allow staff full access" 
+ON public.appointments 
+FOR ALL 
+TO authenticated 
+USING (auth.role() = 'authenticated') 
+WITH CHECK (auth.role() = 'authenticated');
 
 -- 6. Enable Realtime for live updates on the Admin Dashboard
 ALTER PUBLICATION supabase_realtime ADD TABLE public.appointments;

@@ -77,6 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- HTML Sanitization Helper (Anti-XSS) ---
+  function escapeHTML(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   // --- Auth Check ---
   function checkAuth() {
     const session = getAdminSession();
@@ -114,18 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Quick Demo Login Button (Guaranteed 1-Click Access)
-  if (quickDemoLoginBtn) {
-    quickDemoLoginBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      loginEmail.value = 'admin@accuratehealthcare.co.in';
-      loginPassword.value = 'accurate2026';
-      const res = await loginAdmin('admin@accuratehealthcare.co.in', 'accurate2026');
-      if (res.success) {
-        checkAuth();
-      }
-    });
-  }
 
   // Logout Handler
   if (logoutBtn) {
@@ -369,52 +368,53 @@ document.addEventListener('DOMContentLoaded', () => {
         ? '<span class="inline-flex items-center gap-1 text-[11px] font-bold text-[#286491] bg-brand-50 px-2 py-0.5 rounded border border-brand-200">🏠 Home Physio</span>'
         : '<span class="inline-flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">🏥 Clinic Visit</span>';
 
-      const cleanPhone = item.phone.replace(/[^0-9]/g, '');
+      const cleanPhone = (item.phone || '').replace(/[^0-9]/g, '');
+      const safeTel = (item.phone || '').replace(/[^0-9+]/g, '');
       const waPhone = cleanPhone.startsWith('91') ? cleanPhone : ('91' + cleanPhone);
       const waText = encodeURIComponent(
-        `Hello ${item.patient_name}, regarding your physiotherapy appointment at Accurate Healthcare (Ref: ${item.booking_ref}):\n\n` +
-        `Your consultation for ${item.condition} (${isHome ? 'Home Physio' : 'NH-24 Mehrauli Clinic'}) is confirmed with Dr. Manish Gupta & Dr. Vandana Choudhary.\n\n` +
+        `Hello ${item.patient_name || 'Patient'}, regarding your physiotherapy appointment at Accurate Healthcare (Ref: ${item.booking_ref || ''}):\n\n` +
+        `Your consultation for ${item.condition || 'Physiotherapy'} (${isHome ? 'Home Physio' : 'NH-24 Mehrauli Clinic'}) is confirmed with Dr. Manish Gupta & Dr. Vandana Choudhary.\n\n` +
         `Location: Shop-1, Mehrauli Underpass, Near Vikranta Grand Farm House, NH-24, Mehrauli, Ghaziabad, UP\n` +
         `Google Maps: https://maps.app.goo.gl/MJFeaR4iK6EfgqxN7\n` +
         `Clinic Phone: +91 99998 71475 / 76690 32764`
       );
 
       return `
-        <div class="p-4 sm:p-5 hover:bg-slate-50/80 transition flex flex-col lg:flex-row lg:items-center justify-between gap-4" data-id="${item.id}">
+        <div class="p-4 sm:p-5 hover:bg-slate-50/80 transition flex flex-col lg:flex-row lg:items-center justify-between gap-4" data-id="${escapeHTML(item.id)}">
           
           <!-- Left Info Block -->
           <div class="space-y-1.5 flex-1 min-w-0">
             <div class="flex flex-wrap items-center gap-2">
               <span class="font-mono text-xs font-black text-navy-900 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-md">
-                ${item.booking_ref || 'AH-BOOK'}
+                ${escapeHTML(item.booking_ref || 'AH-BOOK')}
               </span>
               ${statusBadge}
               ${careBadge}
-              <span class="text-[11px] text-slate-400 font-medium ml-auto lg:ml-0">${dateStr}</span>
+              <span class="text-[11px] text-slate-400 font-medium ml-auto lg:ml-0">${escapeHTML(dateStr)}</span>
             </div>
 
             <div class="flex flex-wrap items-baseline gap-2 pt-0.5">
-              <h4 class="text-base font-black uppercase italic text-navy-900">${item.patient_name}</h4>
-              <a href="tel:${item.phone}" class="text-xs font-bold text-[#367fb5] hover:underline flex items-center gap-1">
+              <h4 class="text-base font-black uppercase italic text-navy-900">${escapeHTML(item.patient_name)}</h4>
+              <a href="tel:${safeTel}" class="text-xs font-bold text-[#367fb5] hover:underline flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                ${item.phone}
+                ${escapeHTML(item.phone)}
               </a>
             </div>
 
             <p class="text-xs font-bold text-slate-700">
-              Condition: <span class="text-[#286491]">${item.condition}</span>
+              Condition: <span class="text-[#286491]">${escapeHTML(item.condition)}</span>
             </p>
 
             ${isHome && item.location ? `
               <p class="text-xs text-slate-600 flex items-start gap-1">
                 <span class="font-bold text-slate-700 shrink-0">📍 Address:</span>
-                <span class="truncate">${item.location}</span>
+                <span class="truncate">${escapeHTML(item.location)}</span>
               </p>
             ` : ''}
 
             ${item.notes ? `
               <p class="text-xs text-slate-500 italic bg-amber-50/80 border border-amber-200/80 p-2 rounded-lg mt-1">
-                "${item.notes}"
+                "${escapeHTML(item.notes)}"
               </p>
             ` : ''}
           </div>
@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="flex flex-wrap items-center gap-2 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-100">
             
             ${isPending ? `
-              <button data-action="confirm" data-id="${item.id}" class="action-btn px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black italic uppercase text-xs shadow-sm flex items-center gap-1 active:scale-95 transition">
+              <button data-action="confirm" data-id="${escapeHTML(item.id)}" class="action-btn px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black italic uppercase text-xs shadow-sm flex items-center gap-1 active:scale-95 transition">
                 ✓ Confirm
               </button>
             ` : ''}
@@ -435,19 +435,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
 
             <!-- Direct Call Button -->
-            <a href="tel:${item.phone}" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-bold transition flex items-center gap-1">
+            <a href="tel:${safeTel}" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-bold transition flex items-center gap-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               <span>Call</span>
             </a>
 
             ${!isCompleted ? `
-              <button data-action="complete" data-id="${item.id}" class="action-btn px-2.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-300 text-xs font-bold transition" title="Mark consultation completed">
+              <button data-action="complete" data-id="${escapeHTML(item.id)}" class="action-btn px-2.5 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-300 text-xs font-bold transition" title="Mark consultation completed">
                 ✓ Done
               </button>
             ` : ''}
 
             ${!isCancelled ? `
-              <button data-action="cancel" data-id="${item.id}" class="action-btn px-2 py-1.5 rounded-xl bg-slate-50 hover:bg-rose-50 text-slate-500 hover:text-rose-700 text-xs transition" title="Cancel booking">
+              <button data-action="cancel" data-id="${escapeHTML(item.id)}" class="action-btn px-2 py-1.5 rounded-xl bg-slate-50 hover:bg-rose-50 text-slate-500 hover:text-rose-700 text-xs transition" title="Cancel booking">
                 ✕
               </button>
             ` : ''}

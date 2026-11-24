@@ -187,6 +187,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- HTML Sanitizer Helper (Anti-XSS) ---
+  function escapeHTML(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   // --- Booking Confirmation Popup Modal ---
   function showBookingSuccessModal(booking) {
     let modal = document.getElementById('bookingSuccessPopup');
@@ -227,11 +238,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-4 mb-4 text-left space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Booking Reference</span>
-            <span class="font-mono text-sm font-black text-[#367fb5] bg-brand-50 border border-brand-200 px-2.5 py-0.5 rounded-lg">${booking.booking_ref}</span>
+            <span class="font-mono text-sm font-black text-[#367fb5] bg-brand-50 border border-brand-200 px-2.5 py-0.5 rounded-lg">${escapeHTML(booking.booking_ref)}</span>
           </div>
           <div class="flex items-center justify-between text-xs">
             <span class="text-slate-500 font-bold">Patient Name:</span>
-            <span class="font-bold text-slate-800">${booking.patient_name}</span>
+            <span class="font-bold text-slate-800">${escapeHTML(booking.patient_name)}</span>
           </div>
           <div class="flex items-center justify-between text-xs">
             <span class="text-slate-500 font-bold">Care Mode:</span>
@@ -239,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="flex items-center justify-between text-xs">
             <span class="text-slate-500 font-bold">Chief Problem:</span>
-            <span class="font-bold text-slate-800 truncate max-w-[200px]">${booking.condition}</span>
+            <span class="font-bold text-slate-800 truncate max-w-[200px]">${escapeHTML(booking.condition)}</span>
           </div>
         </div>
 
@@ -374,15 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4500);
   }
 
-  // Stored Leads Viewer (Press Ctrl+Alt+B to see all captured leads)
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'b') {
-      const leads = JSON.parse(localStorage.getItem('accurate_bookings') || '[]');
-      alert(`Stored Appointment Inquiries (${leads.length} total):\n\n` + 
-        (leads.length ? leads.map(l => `${l.submittedAt} | ${l.name} (${l.phone}) - ${l.condition} [${l.careType}]`).join('\n') : 'No bookings stored yet. Submit the form to see leads!')
-      );
-    }
-  });
 
   // ================= MOBILE-FIRST SCROLL REVEAL & BLUR-APPEAR OBSERVER =================
   const revealElements = document.querySelectorAll(

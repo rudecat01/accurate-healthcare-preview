@@ -283,42 +283,32 @@ export async function loginAdmin(email, password) {
   const cleanEmail = (email || '').toLowerCase().trim();
   const cleanPass = (password || '').trim();
 
-  // 1. Immediate clinic staff master credentials check (Dr. Manish / Dr. Vandana / Staff)
-  if (
-    cleanPass === 'accurate2026' || 
-    cleanPass === 'admin123' || 
-    cleanPass === 'admin' ||
-    (cleanEmail === 'admin@accuratehealthcare.co.in' && (cleanPass === 'accurate2026' || !cleanPass))
-  ) {
-    const adminUser = {
-      id: 'clinic-director-1',
-      email: cleanEmail || 'admin@accuratehealthcare.co.in',
-      name: 'Dr. Manish Gupta & Dr. Vandana Choudhary',
-      role: 'Clinical Director'
-    };
-    localStorage.setItem(STORAGE_KEY_ADMIN_SESSION, JSON.stringify(adminUser));
-    return { success: true, user: adminUser };
+  if (!cleanEmail || !cleanPass) {
+    return { success: false, error: 'Please enter both your staff email and password.' };
   }
 
-  // 2. Try Supabase Auth if a custom user was created in Supabase Auth dashboard
+  // Authenticate strictly with Supabase Auth
   if (isLiveSupabaseActive() && supabaseInstance) {
     try {
       const { data, error } = await supabaseInstance.auth.signInWithPassword({
         email: cleanEmail,
         password: cleanPass
       });
-      if (!error && data?.session) {
+      if (error) {
+        return { success: false, error: error.message || 'Invalid email or password.' };
+      }
+      if (data?.session) {
         localStorage.setItem(STORAGE_KEY_ADMIN_SESSION, JSON.stringify(data.session));
         return { success: true, user: data.user, session: data.session };
       }
     } catch (err) {
-      console.warn('Supabase auth attempt:', err);
+      return { success: false, error: err.message || 'Authentication error.' };
     }
   }
 
   return { 
     success: false, 
-    error: 'Invalid password. Enter "accurate2026" or tap 1-Click Login.' 
+    error: 'Supabase connection is not active or authentication failed.' 
   };
 }
 
