@@ -10,9 +10,11 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://accuratehealthcare.co.in/">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/logo-ah-icon.png">
-  <link rel="apple-touch-icon" href="/images/logo-ah-icon.png">
+  <!-- Favicon (Google Search & Mobile Compliant: 48x48 .ico + 96x96 + 192x192 PNG) -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" href="/images/favicon-96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
 
   <!-- Open Graph / WhatsApp Preview Meta Tags -->
   <meta property="og:type" content="website">
@@ -72,7 +74,16 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="/src/style.css">
 
-  <!-- Schema.org: MedicalClinic + Physiotherapy + FAQPage -->
+  <!-- Schema.org: WebSite + MedicalClinic + Physiotherapy + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Accurate Healthcare",
+    "alternateName": "Accurate Healthcare Physiotherapy Clinic Ghaziabad",
+    "url": "https://accuratehealthcare.co.in/"
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -80,6 +91,7 @@
     "name": "Accurate Healthcare Physiotherapy & Neuro Rehab Clinic",
     "alternateName": "Accurate Healthcare Physiotherapy Clinic Ghaziabad",
     "description": "Leading physiotherapy clinic in Ghaziabad at NH-24 Mehrauli Underpass offering ortho, spine, stroke neuro rehabilitation, electrotherapy, and certified home physiotherapy visits across Ghaziabad & NCR.",
+    "logo": "https://accuratehealthcare.co.in/images/icon-512.png",
     "image": "https://accuratehealthcare.co.in/images/logo-ah-full.png",
     "telephone": "+919999871475",
     "url": "https://accuratehealthcare.co.in",
@@ -308,8 +320,9 @@
     <div class="hidden lg:block absolute top-0 right-0 h-full w-[65vw] xl:w-[62vw] 2xl:w-[60vw] pointer-events-none z-10 select-none overflow-visible">
       <div class="relative h-full w-full">
         <!-- Crescent Image Bleed -->
-        <img src="./images/hero-crescent-bleed.png"
+        <img src="./images/hero-crescent-bleed.webp"
           alt="Accurate Healthcare Senior Clinical Directors Dr. Manish Gupta & Dr. Vandana Choudhary"
+          fetchpriority="high" decoding="async"
           class="absolute top-0 right-0 h-full w-auto max-w-none object-contain object-right pointer-events-auto select-none" />
 
         <!-- Tilted PhysioFit Signature Sticker Badge (Matches PhysioFit 1:1 with Pin Box) -->
@@ -479,8 +492,9 @@
       <!-- Mobile / Tablet Crescent Card (Visible only on < lg screens) -->
       <div class="lg:hidden mt-10 relative max-w-lg mx-auto">
         <div class="relative">
-          <img src="./images/hero-crescent-web.png"
+          <img src="./images/hero-crescent-web.webp"
             alt="Accurate Healthcare Senior Clinical Directors Dr. Manish Gupta & Dr. Vandana Choudhary"
+            fetchpriority="high" decoding="async"
             class="w-full h-auto object-contain block drop-shadow-xl" />
 
           <!-- Mobile Tilted Sticker -->
@@ -571,7 +585,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-35 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1600px] max-w-none transform rotate-180">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1600px] max-w-none transform rotate-180">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -599,7 +613,7 @@
             <div class="grid sm:grid-cols-12 gap-5 items-center mb-5">
               <div
                 class="sm:col-span-5 rounded-2xl overflow-hidden aspect-square bg-slate-200 border-2 border-navy-900 shadow-md">
-                <img src="/images/dr-manish-centered.jpg"
+                <img loading="lazy" decoding="async" src="/images/dr-manish-centered.jpg"
                   alt="Dr. Manish Gupta - Senior Consultant Neuro Physiotherapist"
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
               </div>
@@ -637,7 +651,7 @@
             <div class="grid sm:grid-cols-12 gap-5 items-center mb-5">
               <div
                 class="sm:col-span-5 rounded-2xl overflow-hidden aspect-square bg-slate-200 border-2 border-navy-900 shadow-md">
-                <img src="/images/dr-vandana-centered.jpg"
+                <img loading="lazy" decoding="async" src="/images/dr-vandana-centered.jpg"
                   alt="Dr. Vandana Choudhary - Senior Consultant Ortho Physiotherapist"
                   class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
               </div>
@@ -702,7 +716,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-40 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform translate-y-16">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform translate-y-16">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -724,7 +738,7 @@
         <div
           class="bg-white rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] flex flex-col justify-between group reveal-blur-left">
           <div class="h-72 sm:h-80 relative overflow-hidden bg-slate-900">
-            <img src="/images/clinic-exterior.jpg" alt="Accurate Healthcare NH-24 Clinic"
+            <img loading="lazy" decoding="async" src="/images/clinic-exterior.jpg" alt="Accurate Healthcare NH-24 Clinic"
               class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
             <div
               class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/25 to-transparent flex items-end p-6">
@@ -783,7 +797,7 @@
         <div
           class="bg-white rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] flex flex-col justify-between group reveal-blur-right">
           <div class="h-72 sm:h-80 relative overflow-hidden bg-slate-900">
-            <img src="/images/treatment-elderly.jpg" alt="Home physiotherapy care"
+            <img loading="lazy" decoding="async" src="/images/treatment-elderly.jpg" alt="Home physiotherapy care"
               class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
             <div
               class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/25 to-transparent flex items-end p-6">
@@ -842,7 +856,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-35 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform -scale-x-100">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform -scale-x-100">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -864,7 +878,7 @@
         <!-- Treatment 1: Neuro Rehab -->
         <div
           class="treatment-card-interactive reveal-blur-up stagger-1 relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] group bg-slate-900">
-          <img src="/images/treatment-neuro.jpg" alt="Neuro Rehabilitation & Paralysis Care"
+          <img loading="lazy" decoding="async" src="/images/treatment-neuro.jpg" alt="Neuro Rehabilitation & Paralysis Care"
             class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
 
@@ -895,7 +909,7 @@
         <!-- Treatment 2: Spine & Sciatica -->
         <div
           class="treatment-card-interactive reveal-blur-up stagger-2 relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] group bg-slate-900">
-          <img src="/images/treatment-spine.jpg" alt="Spine and Sciatica Treatment" class="w-full h-full object-cover">
+          <img loading="lazy" decoding="async" src="/images/treatment-spine.jpg" alt="Spine and Sciatica Treatment" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
 
           <div class="absolute top-5 left-5 transform rotate-3">
@@ -925,7 +939,7 @@
         <!-- Treatment 3: Joint & Post-TKR -->
         <div
           class="treatment-card-interactive reveal-blur-up stagger-3 relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] group bg-slate-900">
-          <img src="/images/treatment-joint.jpg" alt="Post Knee Replacement Rehab" class="w-full h-full object-cover">
+          <img loading="lazy" decoding="async" src="/images/treatment-joint.jpg" alt="Post Knee Replacement Rehab" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
 
           <div class="absolute top-5 left-5 transform -rotate-2">
@@ -955,7 +969,7 @@
         <!-- Treatment 4: Elderly & Home Physio -->
         <div
           class="treatment-card-interactive reveal-blur-up stagger-4 relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] group bg-slate-900">
-          <img src="/images/treatment-elderly.jpg" alt="Home Physio and Attendant Support"
+          <img loading="lazy" decoding="async" src="/images/treatment-elderly.jpg" alt="Home Physio and Attendant Support"
             class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
 
@@ -986,7 +1000,7 @@
         <!-- Treatment 5: Gait Training & Mobility -->
         <div
           class="treatment-card-interactive reveal-blur-up stagger-5 relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] group bg-slate-900">
-          <img src="/images/treatment-gait.jpg" alt="Gait Training & Balance Rehabilitation"
+          <img loading="lazy" decoding="async" src="/images/treatment-gait.jpg" alt="Gait Training & Balance Rehabilitation"
             class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
 
@@ -1017,7 +1031,7 @@
         <!-- Treatment 6: Cervical & Shoulder -->
         <div
           class="treatment-card-interactive reveal-blur-up stagger-6 relative h-80 sm:h-96 rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] group bg-slate-900">
-          <img src="/images/treatment-shoulder.jpg" alt="Cervical Spondylosis and Shoulder Mobilization"
+          <img loading="lazy" decoding="async" src="/images/treatment-shoulder.jpg" alt="Cervical Spondylosis and Shoulder Mobilization"
             class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
 
@@ -1057,7 +1071,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-35 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform translate-y-8">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform translate-y-8">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1077,7 +1091,7 @@
 
         <div
           class="rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] bg-slate-900 group h-[420px] relative reveal-blur-zoom stagger-1">
-          <img src="/images/electrotherapy.jpg" alt="Electrotherapy & Modalities"
+          <img loading="lazy" decoding="async" src="/images/electrotherapy.jpg" alt="Electrotherapy & Modalities"
             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 text-white">
@@ -1089,7 +1103,7 @@
 
         <div
           class="rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] bg-slate-900 group h-[420px] relative reveal-blur-zoom stagger-2">
-          <img src="/images/clinic-awards.jpg" alt="Accredited Degrees and Wall of Certificates"
+          <img loading="lazy" decoding="async" src="/images/clinic-awards.jpg" alt="Accredited Degrees and Wall of Certificates"
             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 text-white">
@@ -1101,7 +1115,7 @@
 
         <div
           class="rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[5px_5px_0px_#0e1d3e] bg-slate-900 group h-[420px] relative">
-          <img src="/images/clinic-exterior.jpg" alt="Clinic Entrance"
+          <img loading="lazy" decoding="async" src="/images/clinic-exterior.jpg" alt="Clinic Entrance"
             class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 text-white">
@@ -1121,7 +1135,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-40 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform -translate-y-8">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform -translate-y-8">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1150,7 +1164,7 @@
         <div class="lg:col-span-6 reveal-blur-right">
           <div
             class="rounded-3xl overflow-hidden border-2 border-navy-900 shadow-[6px_6px_0px_#0e1d3e] bg-slate-900 h-80 sm:h-96 relative group">
-            <img src="/images/treatment-gait.jpg" alt="Physiotherapy treatment session"
+            <img loading="lazy" decoding="async" src="/images/treatment-gait.jpg" alt="Physiotherapy treatment session"
               class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent"></div>
             <div class="absolute bottom-6 left-6 right-6 text-white">
@@ -1171,7 +1185,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-35 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform rotate-45">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform rotate-45">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1425,7 +1439,7 @@
 
     <!-- Flowing Wave Grid Background -->
     <div class="absolute inset-0 pointer-events-none opacity-40 overflow-hidden flex items-center justify-center">
-      <img src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform translate-y-8">
+      <img loading="lazy" decoding="async" src="/images/bg-lines.svg" alt="" class="w-[1700px] max-w-none transform translate-y-8">
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1530,7 +1544,7 @@
         <!-- Panel 1: Brand & About -->
         <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
           <div class="flex items-center gap-3">
-            <img src="/images/logo-ah-full.png" alt="Accurate Healthcare"
+            <img loading="lazy" decoding="async" src="/images/logo-ah-full.png" alt="Accurate Healthcare"
               class="h-12 w-auto rounded-xl shadow-md border border-white/10">
           </div>
           <p class="text-xs text-slate-400 leading-relaxed">
