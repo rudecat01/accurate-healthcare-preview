@@ -3,6 +3,8 @@ import {
   loginAdmin, 
   logoutAdmin, 
   sendPasswordResetEmail,
+  onAdminAuthStateChange,
+  updateAdminPassword,
   getAdminSession, 
   fetchAppointments, 
   updateAppointmentStatus, 
@@ -188,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             <span>Reset Link Dispatched!</span>
           </div>
-          <span>A secure reset link has been dispatched to <b>${email}</b>. Please check your Gmail inbox and Spam folder.</span>
+          <span>A secure reset link has been dispatched to <b>${escapeHTML(email)}</b>. Please check your Gmail inbox and Spam folder.</span>
           <a href="https://mail.google.com" target="_blank" class="mt-3.5 inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black uppercase text-[11px] shadow-[2px_2px_0px_#0e1d3e] transition">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             <span>Open Gmail Inbox</span>
@@ -199,6 +201,55 @@ document.addEventListener('DOMContentLoaded', () => {
         resetFeedback.className = 'p-3 rounded-xl text-xs font-bold leading-relaxed bg-rose-50 border border-rose-200 text-rose-800';
         resetFeedback.textContent = res.error || 'Failed to send reset link.';
         resetFeedback.classList.remove('hidden');
+      }
+    });
+  }
+
+  // --- Password Recovery Callback Handler (from Gmail reset link) ---
+  const newPasswordModal = document.getElementById('newPasswordModal');
+  const newPasswordForm = document.getElementById('newPasswordForm');
+  const newPasswordInput = document.getElementById('newPasswordInput');
+  const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+  const newPasswordFeedback = document.getElementById('newPasswordFeedback');
+  const saveNewPasswordBtn = document.getElementById('saveNewPasswordBtn');
+
+  onAdminAuthStateChange((event) => {
+    if (event === 'PASSWORD_RECOVERY' && newPasswordModal) {
+      newPasswordModal.classList.remove('hidden');
+    }
+  });
+
+  if (newPasswordForm) {
+    newPasswordForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pass = newPasswordInput.value;
+      const confirmPass = confirmPasswordInput.value;
+
+      if (pass !== confirmPass) {
+        newPasswordFeedback.className = 'p-3 rounded-xl text-xs font-bold bg-rose-50 border border-rose-200 text-rose-800';
+        newPasswordFeedback.textContent = 'Passwords do not match.';
+        newPasswordFeedback.classList.remove('hidden');
+        return;
+      }
+
+      saveNewPasswordBtn.disabled = true;
+      saveNewPasswordBtn.textContent = 'Saving...';
+
+      const res = await updateAdminPassword(pass);
+
+      saveNewPasswordBtn.disabled = false;
+      saveNewPasswordBtn.textContent = 'Save Password & Sign In';
+
+      if (res.success) {
+        newPasswordModal.classList.add('hidden');
+        if (window.location.hash) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+        checkAuth();
+      } else {
+        newPasswordFeedback.className = 'p-3 rounded-xl text-xs font-bold bg-rose-50 border border-rose-200 text-rose-800';
+        newPasswordFeedback.textContent = res.error || 'Could not update password.';
+        newPasswordFeedback.classList.remove('hidden');
       }
     });
   }

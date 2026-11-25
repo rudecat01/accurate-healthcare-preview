@@ -328,26 +328,64 @@ export async function sendPasswordResetEmail(email) {
     return { success: false, error: 'Please enter a valid Gmail / email address.' };
   }
 
-  // 1. If Supabase client is active, request real password reset from Supabase Auth
-  if (isLiveSupabaseActive() && supabaseInstance) {
-    try {
-      const { data, error } = await supabaseInstance.auth.resetPasswordForEmail(cleanEmail, {
-        redirectTo: window.location.origin + window.location.pathname
-      });
-      if (error) {
-        console.warn('Supabase resetPasswordForEmail notice:', error.message);
-      }
-    } catch (err) {
-      console.warn('Supabase reset error:', err);
-    }
+  if (!isLiveSupabaseActive() || !supabaseInstance) {
+    return { success: false, error: 'Supabase connection is not active. Check API settings.' };
   }
 
-  // 2. Also register local recovery token
-  return {
-    success: true,
-    email: cleanEmail,
-    message: `A secure password reset link has been dispatched to ${cleanEmail}. Check your Gmail inbox and spam folder.`
-  };
+  try {
+    const redirectUrl = `${window.location.origin}/admin.html`;
+    const { error } = await supabaseInstance.auth.resetPasswordForEmail(cleanEmail, {
+      redirectTo: redirectUrl
+    });
+    if (error) {
+      const msg = error.message || 'Could not send reset email.';
+      const isRateLimit = msg.toLowerCase().includes('rate') || error.status === 429;
+      return {
+        success: false,
+        error: isRateLimit
+          ? 'Supabase email rate limit reached (max ~2–4 emails/hour on free built-in mailer). Please wait a bit or reset the user password directly in Supabase Dashboard → Authentication → Users.'
+          : msg
+      };
+    }
+    return {
+      success: true,
+      email: cleanEmail,
+      message: `A secure password reset link has been dispatched to ${cleanEmail}. Check your Gmail inbox and spam folder.`
+    };
+  } catch (err) {
+    return { success: false, error: err.message || 'Network error while requesting reset link.' };
+  }
+}
+
+export function onAdminAuthStateChange(callback) {
+  if (!isLiveSupabaseActive() || !supabaseInstance) return () => {};
+  const { data } = supabaseInstance.auth.onAuthStateChange((event, session) => {
+    callback(event, session);
+  });
+  return () => data?.subscription?.unsubscribe();
+}
+
+export async function updateAdminPassword(newPassword) {
+  const cleanPass = (newPassword || '').trim();
+  if (cleanPass.length < 6) {
+    return { success: false, error: 'Password must be at least 6 characters.' };
+  }
+  if (!isLiveSupabaseActive() || !supabaseInstance) {
+    return { success: false, error: 'Supabase connection is not active.' };
+  }
+  try {
+    const { data, error } = await supabaseInstance.auth.updateUser({ password: cleanPass });
+    if (error) {
+      return { success: false, error: error.message || 'Failed to update password.' };
+    }
+    const { data: sessionData } = await supabaseInstance.auth.getSession();
+    if (sessionData?.session) {
+      localStorage.setItem(STORAGE_KEY_ADMIN_SESSION, JSON.stringify(sessionData.session));
+    }
+    return { success: true, user: data?.user };
+  } catch (err) {
+    return { success: false, error: err.message || 'Password update error.' };
+  }
 }
 
 export function getAdminSession() {
